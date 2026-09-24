@@ -62,6 +62,7 @@ import HmEntrevista, { EntrevistaVM } from "@/components/screens/HmEntrevista";
 import type { GoogleActions } from "@/components/screens/GoogleActions";
 import { LiverExito, LiverSplash, LiverTransicion } from "@/components/LiverLoader";
 import CandidatoPortal, { type PersonaPortal } from "@/components/screens/CandidatoPortal";
+import FooterMarca from "@/components/FooterMarca";
 import HmChat from "@/components/screens/HmChat";
 import UserDashboard from "@/components/screens/UserDashboard";
 import UserDetalle from "@/components/screens/UserDetalle";
@@ -374,7 +375,7 @@ export default function App() {
   const reiniciarRef = useRef(reiniciarDemo);
   reiniciarRef.current = reiniciarDemo;
 
-  // Atajo oculto para reiniciar la demo: Ctrl+Alt+R (también triple clic en el texto "Liver Companion" de la barra superior)
+  // Atajo oculto para reiniciar la demo: Ctrl+Alt+R (también tres toques en el ícono de Liverpool del pie de página (sirve en celular) o triple clic en el texto "Liver Companion" de la barra superior)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.altKey && e.code === "KeyR") void reiniciarRef.current(); // e.code: en Mac Option+R produce "®" en e.key
@@ -1433,6 +1434,7 @@ export default function App() {
         onSetRoleAt={() => setRole("at")}
         onSetRoleHm={() => setRole("hm")}
         onSetRoleCandidato={() => setRole("candidato")}
+        onReiniciar={() => void reiniciarDemo()}
         />
       </>
     );
@@ -1666,6 +1668,7 @@ export default function App() {
         )}
         </main>
       </div>
+      <FooterMarca onReiniciar={() => void reiniciarDemo()} />
     </div>
   );
 }

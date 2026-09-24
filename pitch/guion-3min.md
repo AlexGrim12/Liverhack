@@ -50,7 +50,7 @@
 - [ ] `.env.local` con `NEXT_PUBLIC_DEMO_MODE=true` y `npm run dev` corriendo. **Internet activo**: Gemini (contexto libre, explicaciones, transcripción, asistente y chatbot) y GitHub lo necesitan; sin internet la demo sigue con el motor local (la insignia dice "Motor: local").
 - [ ] Google (opcional, ver `DEMO_GOOGLE.md`): link de Meet en `NEXT_PUBLIC_MEET_LINK`, webhook de Chat en `GOOGLE_CHAT_WEBHOOK_URL`, espacio de Chat abierto **en otra ventana o en el teléfono** para que se vea llegar el mensaje.
 - [ ] **Estado limpio:** recarga `http://localhost:3000` o usa el reinicio oculto. Los datos son en memoria: recargar = happy path.
-- [ ] **Reinicio oculto** (solo tú lo sabes): **Control + Option + R** (Mac) o **triple clic en el texto "Liver Companion"** de la barra superior. Tras reiniciar no repite la pantalla de carga.
+- [ ] **Reinicio oculto** (solo tú lo sabes): **Control + Option + R** (Mac) o **tres toques en el ícono de Liverpool del pie de página** (sirve en celular) o **triple clic en el texto "Liver Companion"** de la barra superior. Tras reiniciar no repite la pantalla de carga.
 - [ ] Navegador en pantalla completa, zoom 110 %, una sola pestaña, notificaciones del sistema apagadas.
 - [ ] Ensaya **3 veces con cronómetro**. Lo que más tiempo se come: la requisición (título + categoría) y el análisis con IA (~13 s con contexto). Si vas justo, recorta el momento 1 o salta el detalle de Mariana en el 3.
 - [ ] Video de respaldo grabado con **estos mismos cinco momentos** (si falla la pantalla o el proyector).

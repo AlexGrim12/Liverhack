@@ -1,5 +1,6 @@
 "use client";
 
+import FooterMarca from "@/components/FooterMarca";
 import AsistenteFlotante from "@/components/AsistenteFlotante";
 import { UserRound, Users, UserCheck, CheckCircle2, Eye, ArrowRight } from "lucide-react";
 
@@ -8,6 +9,7 @@ type Props = {
   onSetRoleAt: () => void;
   onSetRoleHm: () => void;
   onSetRoleCandidato: () => void;
+  onReiniciar?: () => void; // gesto oculto: tres toques en el ícono del pie
 };
 
 export default function Landing({
@@ -15,6 +17,7 @@ export default function Landing({
   onSetRoleAt,
   onSetRoleHm,
   onSetRoleCandidato,
+  onReiniciar,
 }: Props) {
   const roles = [
     {
@@ -109,10 +112,7 @@ export default function Landing({
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="text-center text-xs text-ink-muted/80 pb-4">
-        El Puerto de Liverpool · Sistema de Gestión de Talento
-      </footer>
+      <FooterMarca onReiniciar={onReiniciar} />
       <AsistenteFlotante />
     </div>
   );
