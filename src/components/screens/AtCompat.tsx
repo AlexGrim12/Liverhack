@@ -102,7 +102,7 @@ export default function AtCompat({
             <h1 className="text-lg sm:text-xl font-black text-ink-title flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-accent" /> Compatibilidad con IA
             </h1>
-            <p className="text-xs text-ink-muted mt-0.5">{vacanteTitulo} · {ui.filas.length || 10} CVs cargados y analizados automáticamente</p>
+            <p className="text-xs text-ink-muted mt-0.5">{vacanteTitulo} · {ui.filas.length} CVs cargados y analizados automáticamente</p>
           </div>
           <span className="text-[10px] font-bold text-ink-muted bg-surface-subtle px-2 py-1 rounded-md shrink-0" title="Reglas + vocabulario técnico; con GEMINI_API_KEY el servidor puede redactar explicaciones con Gemini">
             Motor: {ui.motor === "gemini" ? "Gemini" : "local"}

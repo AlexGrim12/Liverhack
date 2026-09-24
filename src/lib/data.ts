@@ -52,7 +52,7 @@ export const VACANTES_RAW: VacanteRaw[] = [
     responsableIniciales: "SM",
     etapaIndex: 4,
     sla: "#F9A825",
-    candidatosCount: 10,
+    candidatosCount: CANDIDATOS_V1.length,
     solicitante: "Carlos Núñez Ibarra",
     hm: "Luis Herrera",
     hrbp: "Patricia Vega",

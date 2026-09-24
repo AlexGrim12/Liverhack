@@ -6,7 +6,7 @@ Modo demo, sin login. Perfiles: HRBP (BP), Reclutamiento (AT), Hiring Manager y 
 ## Antes de empezar
 - `npm run dev` corriendo, `NEXT_PUBLIC_DEMO_MODE=true` y internet (Gemini y GitHub).
 - Estado inicial: **Ctrl + Alt + R** (en Mac: Control + Option + R; o tres toques en el ícono de Liverpool del pie de página (sirve en celular) o triple clic en el texto "Liver Companion" de la barra superior) reinicia todo.
-- Vacante protagonista: **Backend Developer Sr — Equipo Pagos**, etapa Selección, 10 candidatos con CV.
+- Vacante protagonista: **Backend Developer Sr — Equipo Pagos**, etapa Selección, 11 candidatos con CV.
 - Mariana empieza **sin oferta**. Quien sí tiene una desde el inicio es Rodrigo (Logística).
 
 ## 1 · Alinear: el HM captura, el BP solo valida
@@ -21,7 +21,7 @@ Modo demo, sin login. Perfiles: HRBP (BP), Reclutamiento (AT), Hiring Manager y 
 2. Abre una vacante que no esté por validar: detalle de solo lectura.
 3. Cambia a **Candidato/a** → cualquiera de las personas: ve las mismas etapas y el mismo semáforo que el equipo.
 
-## 3 · Decidir con IA: 10 CVs, un proyecto y contexto libre
+## 3 · Decidir con IA: 11 CVs, un proyecto y contexto libre
 1. **Reclutamiento** → *Backend Developer Sr* → *Analizar compatibilidad con IA*.
 2. Proyecto de referencia: **medusajs/medusa** (real, de GitHub), con la requisición validada marcada.
 3. Añade con los botones dos ideas de contexto (*fintech o pagos*, *open source o charlas*).
@@ -46,7 +46,7 @@ Modo demo, sin login. Perfiles: HRBP (BP), Reclutamiento (AT), Hiring Manager y 
 5. (Opcional) **Reclutamiento** → vacante de Pagos: su estatus es **Oferta aceptada**.
 
 ## Extra (opcional): evaluación previa, comentarios y vista masiva
-1. **Reclutamiento** → *Postulaciones* (menú lateral): las 13 postulaciones de las 3 vacantes en una tabla, con evaluación previa y comentarios.
+1. **Reclutamiento** → *Postulaciones* (menú lateral): las 14 postulaciones de las 3 vacantes en una tabla, con evaluación previa y comentarios.
 2. Filtra (por ejemplo *Sin enviar*), marca varias filas → **Enviar evaluación previa** (tipo, plazo en días hábiles, mensaje) → llega el aviso al chat de la app.
 3. Con varias filas marcadas, escribe en **Comentar en todas** para dejar un comentario a la vez; abre una fila (flecha) para ver su hilo y, si está *Por calificar*, **Calificar** de 0 a 100.
 4. **Exportar CSV** baja la tabla filtrada (o solo las marcadas).

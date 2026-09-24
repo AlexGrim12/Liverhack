@@ -1,4 +1,4 @@
-// Pool de la vacante "Backend Developer Sr — Pagos" en la demo: 10 CVs (PDF en /public/cvs) analizados con el motor local.
+// Pool de la vacante "Backend Developer Sr — Pagos" en la demo: 11 CVs (PDF en /public/cvs) analizados con el motor local.
 import type { CandidatoRaw } from "@/lib/data";
 import { analyzeCv } from "@/lib/ai/cv";
 import { analyzeRepo } from "@/lib/ai/repo";

@@ -612,7 +612,7 @@ export default function App() {
   }
 
   async function analizarCompat() {
-    const pasos = ["Leyendo los 10 CVs cargados…", "Extrayendo habilidades, años y liderazgo de cada CV…", "Analizando el repositorio de GitHub…", "Comparando contra la requisición validada…", "Aplicando tu contexto…"];
+    const pasos = [`Leyendo los ${CVS.length} CVs cargados…`, "Extrayendo habilidades, años y liderazgo de cada CV…", "Analizando el repositorio de GitHub…", "Comparando contra la requisición validada…", "Aplicando tu contexto…"];
     setCompatUI((u) => ({ ...u, error: null, explicaciones: {}, motor: "local" }));
     for (const p of pasos) {
       setCompatUI((u) => ({ ...u, progreso: p }));

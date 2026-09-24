@@ -6,8 +6,8 @@ Todo funciona en **modo demo** (sin login, sin claves). Con internet, el reposit
 
 | Pieza | Dónde | Qué hace |
 |---|---|---|
-| **10 CVs** con perfiles distintos | `src/lib/demo/cvs.json` y `public/cvs/c1.pdf … c10.pdf` | Backend Sr de pagos (Mariana), full-stack, Java/banca, Rust/pagos, DevOps, frontend, QA, data science, junior de bootcamp… |
-| **Compatibilidad con IA** | Reclutamiento → *Backend Developer Sr* → **Analizar compatibilidad con IA** | Ranking de los 10 CVs contra un repositorio de GitHub y la requisición validada, con el desglose de cada porcentaje. |
+| **11 CVs** con perfiles distintos | `src/lib/demo/cvs.json` y `public/cvs/c1.pdf … c11.pdf` | Backend Sr de pagos (Mariana), full-stack, Java/banca, Rust/pagos, DevOps, frontend, QA, data science, junior de bootcamp… |
+| **Compatibilidad con IA** | Reclutamiento → *Backend Developer Sr* → **Analizar compatibilidad con IA** | Ranking de los 11 CVs contra un repositorio de GitHub y la requisición validada, con el desglose de cada porcentaje. |
 | **Contexto libre** | Mismo tablero, cuadro "Contexto: cualquier cosa de la vida diaria" | Una idea por línea, en tus palabras ("vive en CDMX o puede trasladarse", "ha dado talleres"…). Pesa el 25 % del resultado. |
 | **Otro proyecto** | Selector o URL de GitHub | Cambia el proyecto y cambia el ranking (con *hyperswitch* y sin requisición, sube Regina). |
 | **Transcripción → análisis** | Hiring Manager → *Evaluar entrevista* | Resumen, frases clave, competencias **con evidencia textual**, dudas y qué profundizar. Se puede pegar **otra** transcripción. |

@@ -1,658 +1,728 @@
 [
- {
-  "id": "c1",
-  "nombre": "Mariana Coronado Reyes",
-  "titular": "Backend Engineer Sr · Pagos y microservicios",
-  "ubicacion": "Ciudad de México",
-  "email": "mariana.coronado@example.com",
-  "github": "mcoronado-dev",
-  "resumen": "Ingeniera de software con 8 años construyendo plataformas de pagos de alto volumen. Diseño microservicios en Node.js y TypeScript sobre AWS y lidero un equipo de 4 desarrolladores. Me gusta mentorear a personas junior y explicar decisiones técnicas a negocio.",
-  "experiencia": [
-   {
-    "puesto": "Tech Lead Backend",
-    "empresa": "PagoRápido (fintech de pagos)",
-    "periodo": "2021 – Actualidad",
-    "logros": [
-     "Lidero un equipo de 4 desarrolladores y defino la arquitectura de microservicios de la pasarela de pagos.",
-     "Reduje 40% la latencia de autorización migrando un monolito a microservicios en Node.js y TypeScript sobre AWS ECS.",
-     "Implementé idempotencia y reintentos con Kafka: 0 cobros duplicados en 18 meses.",
-     "Mentoreo a 3 personas junior; 2 fueron promovidas."
-    ]
-   },
-   {
-    "puesto": "Backend Developer",
-    "empresa": "Banca Digital MX",
-    "periodo": "2016 – 2021",
-    "logros": [
-     "Construí APIs REST y GraphQL para pagos con tarjeta procesando 1.2 M de transacciones diarias.",
-     "Optimicé consultas en PostgreSQL y Redis, bajando el tiempo de respuesta de 800 ms a 120 ms.",
-     "Cumplí requisitos PCI DSS y de seguridad con OAuth2 y JWT."
-    ]
-   }
-  ],
-  "educacion": [
-   {
-    "titulo": "Ingeniería en Computación",
-    "institucion": "UNAM",
-    "periodo": "2012 – 2016"
-   }
-  ],
-  "skills": [
-   "TypeScript",
-   "Node.js",
-   "JavaScript",
-   "PostgreSQL",
-   "Redis",
-   "Kafka",
-   "AWS (ECS, Lambda, SQS, S3)",
-   "Docker",
-   "Microservicios",
-   "Arquitectura orientada a eventos",
-   "GraphQL",
-   "REST",
-   "Jest",
-   "CI/CD con GitHub Actions",
-   "PCI DSS"
-  ],
-  "certificaciones": [
-   "AWS Certified Solutions Architect",
-   "Certificación Scrum Master"
-  ],
-  "idiomas": [
-   {
-    "idioma": "Inglés",
-    "nivel": "avanzado"
-   }
-  ],
-  "intereses": [
-   "Mentoría a mujeres en tecnología",
-   "Contribuciones open source",
-   "Guardias de soporte (on-call) rotativas"
-  ],
-  "compAct": 55000,
-  "compDes": 68000,
-  "fuente": "Bolsa de trabajo"
- },
- {
-  "id": "c2",
-  "nombre": "Emiliano Vázquez Tello",
-  "titular": "Full-stack Developer · TypeScript",
-  "ubicacion": "Guadalajara",
-  "email": "emiliano.vazquez@example.com",
-  "github": "evazquez",
-  "resumen": "Desarrollador full-stack con 6 años en e-commerce. Trabajo con TypeScript, React y Node.js, y contribuyo a plugins open source de comercio electrónico. Certificado en Scrum y con experiencia guiando a compañeros.",
-  "experiencia": [
-   {
-    "puesto": "Full-stack Developer Sr",
-    "empresa": "TiendaOnline Latam (e-commerce)",
-    "periodo": "2020 – Actualidad",
-    "logros": [
-     "Desarrollé el carrito y checkout en React y Node.js con Express y MongoDB.",
-     "Integré pasarelas de pago (Stripe y Conekta) para 3 países.",
-     "Contribuyo a plugins open source de comercio electrónico y di 2 charlas en comunidades locales.",
-     "Ofrezco mentoría técnica a compañeros de nuevo ingreso."
-    ]
-   },
-   {
-    "puesto": "Desarrollador Web",
-    "empresa": "Agencia Pixel",
-    "periodo": "2017 – 2020",
-    "logros": [
-     "Entregué 15 sitios y tiendas en JavaScript y PHP.",
-     "Automaticé despliegues con Docker."
-    ]
-   }
-  ],
-  "educacion": [
-   {
-    "titulo": "Ingeniería en Sistemas",
-    "institucion": "ITESO",
-    "periodo": "2013 – 2017"
-   }
-  ],
-  "skills": [
-   "TypeScript",
-   "JavaScript",
-   "React",
-   "Node.js",
-   "Express",
-   "MongoDB",
-   "Docker",
-   "REST",
-   "Jest",
-   "Stripe",
-   "Git"
-  ],
-  "certificaciones": [
-   "Professional Scrum Master I"
-  ],
-  "idiomas": [
-   {
-    "idioma": "Inglés",
-    "nivel": "intermedio"
-   }
-  ],
-  "intereses": [
-   "Open source",
-   "Comunidad de desarrolladores de Guadalajara",
-   "Mentoría"
-  ],
-  "compAct": 48000,
-  "compDes": 60000,
-  "fuente": "Referido"
- },
- {
-  "id": "c3",
-  "nombre": "Daniela Ríos Landa",
-  "titular": "Desarrolladora Java · Spring",
-  "ubicacion": "Monterrey",
-  "email": "daniela.rios@example.com",
-  "github": "driosl",
-  "resumen": "Desarrolladora Java con 3 años en aplicaciones empresariales con Spring Boot y MySQL. Certificada en Google Cloud y con ganas de crecer hacia arquitectura de microservicios.",
-  "experiencia": [
-   {
-    "puesto": "Desarrolladora Java",
-    "empresa": "Seguros del Norte",
-    "periodo": "2022 – Actualidad",
-    "logros": [
-     "Mantengo servicios en Spring Boot y MySQL para cotización de seguros.",
-     "Migré 2 servicios a contenedores Docker en Google Cloud."
-    ]
-   },
-   {
-    "puesto": "Desarrolladora Jr",
-    "empresa": "Consultora TI Norte",
-    "periodo": "2021 – 2022",
-    "logros": [
-     "Escribí pruebas unitarias con JUnit y participé en revisiones de código."
-    ]
-   }
-  ],
-  "educacion": [
-   {
-    "titulo": "Ingeniería en Tecnologías de la Información",
-    "institucion": "Tec de Monterrey",
-    "periodo": "2017 – 2021"
-   }
-  ],
-  "skills": [
-   "Java",
-   "Spring Boot",
-   "MySQL",
-   "Docker",
-   "Google Cloud",
-   "JUnit",
-   "REST",
-   "Git"
-  ],
-  "certificaciones": [
-   "Google Cloud Certified – Associate Cloud Engineer"
-  ],
-  "idiomas": [
-   {
-    "idioma": "Inglés",
-    "nivel": "basico"
-   }
-  ],
-  "intereses": [
-   "Cursos en línea de arquitectura de software",
-   "Voluntariado en programas de programación para niñas"
-  ],
-  "compAct": 42000,
-  "compDes": 52000,
-  "fuente": "Chatbot"
- },
- {
-  "id": "c4",
-  "nombre": "Rodrigo Alcalá Fuentes",
-  "titular": "Senior Java/Kotlin Engineer · Banca",
-  "ubicacion": "Ciudad de México",
-  "email": "rodrigo.alcala@example.com",
-  "github": "ralcala",
-  "resumen": "Ingeniero senior con 10 años en banca y pagos. Especialista en Java, Kotlin y Spring Boot con microservicios y Kafka en producción. Sin experiencia profesional en Node.js.",
-  "experiencia": [
-   {
-    "puesto": "Senior Backend Engineer",
-    "empresa": "Banco Nacional Digital (banca)",
-    "periodo": "2018 – Actualidad",
-    "logros": [
-     "Diseñé microservicios de transferencias SPEI con Kotlin, Spring Boot y Kafka.",
-     "Lideré un equipo de 6 personas y estandaricé la arquitectura orientada a eventos.",
-     "Alta disponibilidad 99.99% en Oracle y AWS."
-    ]
-   },
-   {
-    "puesto": "Backend Developer",
-    "empresa": "Financiera Central",
-    "periodo": "2014 – 2018",
-    "logros": [
-     "Desarrollé procesos de conciliación de pagos en Java y Oracle.",
-     "Implementé seguridad con OAuth2."
-    ]
-   }
-  ],
-  "educacion": [
-   {
-    "titulo": "Ingeniería en Sistemas Computacionales",
-    "institucion": "IPN",
-    "periodo": "2010 – 2014"
-   }
-  ],
-  "skills": [
-   "Java",
-   "Kotlin",
-   "Spring Boot",
-   "Kafka",
-   "Oracle",
-   "PostgreSQL",
-   "AWS",
-   "Microservicios",
-   "Arquitectura orientada a eventos",
-   "REST",
-   "OAuth2",
-   "Docker",
-   "Kubernetes"
-  ],
-  "certificaciones": [
-   "Oracle Certified Professional Java SE"
-  ],
-  "idiomas": [
-   {
-    "idioma": "Inglés",
-    "nivel": "avanzado"
-   }
-  ],
-  "intereses": [
-   "Ciberseguridad",
-   "Guardias 24/7 en banca",
-   "Docencia universitaria"
-  ],
-  "compAct": 78000,
-  "compDes": 90000,
-  "fuente": "LinkedIn"
- },
- {
-  "id": "c5",
-  "nombre": "Ximena Salazar Pineda",
-  "titular": "Data Scientist · Machine Learning",
-  "ubicacion": "Querétaro",
-  "email": "ximena.salazar@example.com",
-  "github": "xsalazar",
-  "resumen": "Científica de datos con 5 años en modelos de riesgo y recomendación. Trabajo con Python, pandas, scikit-learn y PyTorch, y consulto grandes volúmenes en SQL.",
-  "experiencia": [
-   {
-    "puesto": "Data Scientist",
-    "empresa": "Retail Analytics Group (retail)",
-    "periodo": "2021 – Actualidad",
-    "logros": [
-     "Construí un modelo de recomendación que subió 12% la conversión.",
-     "Automaticé pipelines de datos en Python y SQL sobre BigQuery."
-    ]
-   },
-   {
-    "puesto": "Analista de Datos",
-    "empresa": "Consultora de Riesgo",
-    "periodo": "2019 – 2021",
-    "logros": [
-     "Desarrollé modelos de scoring de crédito con scikit-learn."
-    ]
-   }
-  ],
-  "educacion": [
-   {
-    "titulo": "Maestría en Ciencia de Datos",
-    "institucion": "CIMAT",
-    "periodo": "2017 – 2019"
-   }
-  ],
-  "skills": [
-   "Python",
-   "pandas",
-   "scikit-learn",
-   "PyTorch",
-   "SQL",
-   "BigQuery",
-   "Machine learning",
-   "Jupyter",
-   "Git"
-  ],
-  "certificaciones": [
-   "TensorFlow Developer Certificate"
-  ],
-  "idiomas": [
-   {
-    "idioma": "Inglés",
-    "nivel": "avanzado"
-   }
-  ],
-  "intereses": [
-   "Hackathons de datos",
-   "Divulgación científica"
-  ],
-  "compAct": 60000,
-  "compDes": 72000,
-  "fuente": "Bolsa de trabajo"
- },
- {
-  "id": "c6",
-  "nombre": "Paulina Beltrán Cano",
-  "titular": "DevOps / SRE Engineer",
-  "ubicacion": "Puebla",
-  "email": "paulina.beltran@example.com",
-  "github": "pbeltranc",
-  "resumen": "Ingeniera DevOps con 7 años automatizando infraestructura en AWS con Terraform y Kubernetes. Escribo herramientas en Go y Python y lidero la práctica de observabilidad.",
-  "experiencia": [
-   {
-    "puesto": "SRE Sr",
-    "empresa": "Plataforma Cloud MX",
-    "periodo": "2020 – Actualidad",
-    "logros": [
-     "Reduje 50% el tiempo de despliegue con pipelines de CI/CD en GitHub Actions.",
-     "Administro clústeres Kubernetes en AWS EKS con Terraform.",
-     "Definí SLOs y alertas con Prometheus y Grafana; guardias on-call rotativas."
-    ]
-   },
-   {
-    "puesto": "DevOps Engineer",
-    "empresa": "Software Factory",
-    "periodo": "2017 – 2020",
-    "logros": [
-     "Contenericé 30 aplicaciones con Docker.",
-     "Escribí automatizaciones en Bash y Python."
-    ]
-   }
-  ],
-  "educacion": [
-   {
-    "titulo": "Ingeniería en Telemática",
-    "institucion": "BUAP",
-    "periodo": "2013 – 2017"
-   }
-  ],
-  "skills": [
-   "AWS",
-   "Terraform",
-   "Kubernetes",
-   "Docker",
-   "CI/CD",
-   "GitHub Actions",
-   "Prometheus",
-   "Grafana",
-   "Go",
-   "Python",
-   "Bash",
-   "Linux",
-   "PostgreSQL"
-  ],
-  "certificaciones": [
-   "AWS Certified DevOps Engineer",
-   "Certified Kubernetes Administrator"
-  ],
-  "idiomas": [
-   {
-    "idioma": "Inglés",
-    "nivel": "avanzado"
-   }
-  ],
-  "intereses": [
-   "Comunidad DevOps de Puebla (organizadora)",
-   "Guardias on-call",
-   "Voluntariado"
-  ],
-  "compAct": 65000,
-  "compDes": 78000,
-  "fuente": "Referido"
- },
- {
-  "id": "c7",
-  "nombre": "Iván Cortés Mendoza",
-  "titular": "Frontend Engineer Sr · React",
-  "ubicacion": "Ciudad de México",
-  "email": "ivan.cortes@example.com",
-  "github": "icortesm",
-  "resumen": "Desarrollador frontend con 6 años en React, TypeScript y Next.js. Cuido rendimiento, accesibilidad y sistemas de diseño con Storybook.",
-  "experiencia": [
-   {
-    "puesto": "Frontend Engineer Sr",
-    "empresa": "Marketplace Digital (e-commerce)",
-    "periodo": "2020 – Actualidad",
-    "logros": [
-     "Lideré la migración a Next.js: mejoré 35% el LCP.",
-     "Mantengo un sistema de diseño en Storybook usado por 5 equipos.",
-     "Consumo APIs GraphQL y REST."
-    ]
-   },
-   {
-    "puesto": "Frontend Developer",
-    "empresa": "Estudio Web",
-    "periodo": "2017 – 2020",
-    "logros": [
-     "Construí SPAs en React y Redux."
-    ]
-   }
-  ],
-  "educacion": [
-   {
-    "titulo": "Licenciatura en Diseño y Desarrollo de Software",
-    "institucion": "UAM",
-    "periodo": "2013 – 2017"
-   }
-  ],
-  "skills": [
-   "React",
-   "TypeScript",
-   "Next.js",
-   "JavaScript",
-   "Tailwind CSS",
-   "Storybook",
-   "GraphQL",
-   "Jest",
-   "Cypress",
-   "REST",
-   "Git"
-  ],
-  "certificaciones": [],
-  "idiomas": [
-   {
-    "idioma": "Inglés",
-    "nivel": "intermedio"
-   }
-  ],
-  "intereses": [
-   "Accesibilidad web",
-   "Open source en UI",
-   "Speaker en meetups de React"
-  ],
-  "compAct": 52000,
-  "compDes": 64000,
-  "fuente": "LinkedIn"
- },
- {
-  "id": "c8",
-  "nombre": "Regina Montes Aguilar",
-  "titular": "Systems Engineer · Rust y Go · Pasarelas de pago",
-  "ubicacion": "Ciudad de México",
-  "email": "regina.montes@example.com",
-  "github": "rmontesa",
-  "resumen": "Ingeniera de sistemas con 6 años en backend de alto rendimiento con Rust y Go. Construí el motor de enrutamiento de una pasarela de pagos y hablo en comunidades de Rust en México.",
-  "experiencia": [
-   {
-    "puesto": "Backend Engineer (Rust)",
-    "empresa": "Payments Gateway Startup (pagos)",
-    "periodo": "2021 – Actualidad",
-    "logros": [
-     "Construí el motor de enrutamiento de pagos multiproveedor en Rust con PostgreSQL.",
-     "Integré Stripe y Adyen y reduje 25% el costo por transacción con enrutamiento inteligente.",
-     "Diseñé APIs REST y gRPC con alta disponibilidad."
-    ]
-   },
-   {
-    "puesto": "Backend Developer (Go)",
-    "empresa": "Logística Ágil",
-    "periodo": "2018 – 2021",
-    "logros": [
-     "Desarrollé microservicios en Go con Docker y Kafka."
-    ]
-   }
-  ],
-  "educacion": [
-   {
-    "titulo": "Ingeniería en Sistemas",
-    "institucion": "UNAM",
-    "periodo": "2014 – 2018"
-   }
-  ],
-  "skills": [
-   "Rust",
-   "Go",
-   "PostgreSQL",
-   "gRPC",
-   "REST",
-   "Kafka",
-   "Docker",
-   "Microservicios",
-   "Stripe",
-   "Adyen",
-   "Pasarelas de pago",
-   "Redis",
-   "Linux"
-  ],
-  "certificaciones": [],
-  "idiomas": [
-   {
-    "idioma": "Inglés",
-    "nivel": "avanzado"
-   }
-  ],
-  "intereses": [
-   "Comunidad RustMX (organizadora y speaker)",
-   "Open source",
-   "Hackathons"
-  ],
-  "compAct": 70000,
-  "compDes": 85000,
-  "fuente": "Referido"
- },
- {
-  "id": "c9",
-  "nombre": "Jorge Luis Navarro Prieto",
-  "titular": "Desarrollador Jr · JavaScript (egresado de bootcamp)",
-  "ubicacion": "Mérida",
-  "email": "jorge.navarro@example.com",
-  "github": "jlnavarrop",
-  "resumen": "Desarrollador junior egresado de bootcamp con 1 año de experiencia en JavaScript, Node.js y MongoDB. Muy autodidacta y con proyectos propios en GitHub.",
-  "experiencia": [
-   {
-    "puesto": "Desarrollador Jr",
-    "empresa": "Startup de Delivery",
-    "periodo": "2025 – Actualidad",
-    "logros": [
-     "Construí endpoints REST con Node.js, Express y MongoDB.",
-     "Apoyé en pruebas con Jest."
-    ]
-   }
-  ],
-  "educacion": [
-   {
-    "titulo": "Bootcamp Full-stack JavaScript",
-    "institucion": "Academia Código MX",
-    "periodo": "2024"
-   },
-   {
-    "titulo": "Licenciatura en Administración (trunca)",
-    "institucion": "UADY",
-    "periodo": "2019 – 2022"
-   }
-  ],
-  "skills": [
-   "JavaScript",
-   "Node.js",
-   "Express",
-   "MongoDB",
-   "HTML/CSS",
-   "Git"
-  ],
-  "certificaciones": [],
-  "idiomas": [
-   {
-    "idioma": "Inglés",
-    "nivel": "basico"
-   }
-  ],
-  "intereses": [
-   "Autodidacta (cursos en línea)",
-   "Proyectos open source personales",
-   "Disponible para reubicarse"
-  ],
-  "compAct": 22000,
-  "compDes": 30000,
-  "fuente": "Bolsa de trabajo"
- },
- {
-  "id": "c10",
-  "nombre": "Camila Ferrer Ochoa",
-  "titular": "QA Automation Engineer (SDET)",
-  "ubicacion": "Monterrey",
-  "email": "camila.ferrer@example.com",
-  "github": "cferrero",
-  "resumen": "SDET con 5 años automatizando pruebas de APIs y de interfaz con TypeScript, Playwright y Jest. Integro las pruebas en CI/CD y promuevo la cultura de calidad.",
-  "experiencia": [
-   {
-    "puesto": "SDET Sr",
-    "empresa": "Soluciones Pago Seguro (pagos)",
-    "periodo": "2021 – Actualidad",
-    "logros": [
-     "Automaticé 900 pruebas de API y E2E con Playwright y Jest en TypeScript.",
-     "Integré la suite en GitHub Actions: los defectos en producción bajaron 30%.",
-     "Capacito a desarrolladores en pruebas y TDD."
-    ]
-   },
-   {
-    "puesto": "QA Analyst",
-    "empresa": "Retail Corp",
-    "periodo": "2019 – 2021",
-    "logros": [
-     "Diseñé casos de prueba y automaticé con Cypress."
-    ]
-   }
-  ],
-  "educacion": [
-   {
-    "titulo": "Ingeniería en Sistemas",
-    "institucion": "Tec de Monterrey",
-    "periodo": "2015 – 2019"
-   }
-  ],
-  "skills": [
-   "TypeScript",
-   "Playwright",
-   "Jest",
-   "Cypress",
-   "API testing",
-   "Postman",
-   "CI/CD",
-   "GitHub Actions",
-   "Docker",
-   "TDD",
-   "Node.js",
-   "SQL"
-  ],
-  "certificaciones": [
-   "ISTQB Foundation"
-  ],
-  "idiomas": [
-   {
-    "idioma": "Inglés",
-    "nivel": "avanzado"
-   }
-  ],
-  "intereses": [
-   "Comunidad de testing en Monterrey",
-   "Docencia y talleres",
-   "Disponible para viajar"
-  ],
-  "compAct": 45000,
-  "compDes": 56000,
-  "fuente": "Chatbot"
- }
+  {
+    "id": "c1",
+    "nombre": "Mariana Coronado Reyes",
+    "titular": "Backend Engineer Sr · Pagos y microservicios",
+    "ubicacion": "Ciudad de México",
+    "email": "mariana.coronado@example.com",
+    "github": "mcoronado-dev",
+    "resumen": "Ingeniera de software con 8 años construyendo plataformas de pagos de alto volumen. Diseño microservicios en Node.js y TypeScript sobre AWS y lidero un equipo de 4 desarrolladores. Me gusta mentorear a personas junior y explicar decisiones técnicas a negocio.",
+    "experiencia": [
+      {
+        "puesto": "Tech Lead Backend",
+        "empresa": "PagoRápido (fintech de pagos)",
+        "periodo": "2021 – Actualidad",
+        "logros": [
+          "Lidero un equipo de 4 desarrolladores y defino la arquitectura de microservicios de la pasarela de pagos.",
+          "Reduje 40% la latencia de autorización migrando un monolito a microservicios en Node.js y TypeScript sobre AWS ECS.",
+          "Implementé idempotencia y reintentos con Kafka: 0 cobros duplicados en 18 meses.",
+          "Mentoreo a 3 personas junior; 2 fueron promovidas."
+        ]
+      },
+      {
+        "puesto": "Backend Developer",
+        "empresa": "Banca Digital MX",
+        "periodo": "2016 – 2021",
+        "logros": [
+          "Construí APIs REST y GraphQL para pagos con tarjeta procesando 1.2 M de transacciones diarias.",
+          "Optimicé consultas en PostgreSQL y Redis, bajando el tiempo de respuesta de 800 ms a 120 ms.",
+          "Cumplí requisitos PCI DSS y de seguridad con OAuth2 y JWT."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Ingeniería en Computación",
+        "institucion": "UNAM",
+        "periodo": "2012 – 2016"
+      }
+    ],
+    "skills": [
+      "TypeScript",
+      "Node.js",
+      "JavaScript",
+      "PostgreSQL",
+      "Redis",
+      "Kafka",
+      "AWS (ECS, Lambda, SQS, S3)",
+      "Docker",
+      "Microservicios",
+      "Arquitectura orientada a eventos",
+      "GraphQL",
+      "REST",
+      "Jest",
+      "CI/CD con GitHub Actions",
+      "PCI DSS"
+    ],
+    "certificaciones": [
+      "AWS Certified Solutions Architect",
+      "Certificación Scrum Master"
+    ],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "avanzado"
+      }
+    ],
+    "intereses": [
+      "Mentoría a mujeres en tecnología",
+      "Contribuciones open source",
+      "Guardias de soporte (on-call) rotativas"
+    ],
+    "compAct": 55000,
+    "compDes": 68000,
+    "fuente": "Bolsa de trabajo"
+  },
+  {
+    "id": "c2",
+    "nombre": "Emiliano Vázquez Tello",
+    "titular": "Full-stack Developer · TypeScript",
+    "ubicacion": "Guadalajara",
+    "email": "emiliano.vazquez@example.com",
+    "github": "evazquez",
+    "resumen": "Desarrollador full-stack con 6 años en e-commerce. Trabajo con TypeScript, React y Node.js, y contribuyo a plugins open source de comercio electrónico. Certificado en Scrum y con experiencia guiando a compañeros.",
+    "experiencia": [
+      {
+        "puesto": "Full-stack Developer Sr",
+        "empresa": "TiendaOnline Latam (e-commerce)",
+        "periodo": "2020 – Actualidad",
+        "logros": [
+          "Desarrollé el carrito y checkout en React y Node.js con Express y MongoDB.",
+          "Integré pasarelas de pago (Stripe y Conekta) para 3 países.",
+          "Contribuyo a plugins open source de comercio electrónico y di 2 charlas en comunidades locales.",
+          "Ofrezco mentoría técnica a compañeros de nuevo ingreso."
+        ]
+      },
+      {
+        "puesto": "Desarrollador Web",
+        "empresa": "Agencia Pixel",
+        "periodo": "2017 – 2020",
+        "logros": [
+          "Entregué 15 sitios y tiendas en JavaScript y PHP.",
+          "Automaticé despliegues con Docker."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Ingeniería en Sistemas",
+        "institucion": "ITESO",
+        "periodo": "2013 – 2017"
+      }
+    ],
+    "skills": [
+      "TypeScript",
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Docker",
+      "REST",
+      "Jest",
+      "Stripe",
+      "Git"
+    ],
+    "certificaciones": [
+      "Professional Scrum Master I"
+    ],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "intermedio"
+      }
+    ],
+    "intereses": [
+      "Open source",
+      "Comunidad de desarrolladores de Guadalajara",
+      "Mentoría"
+    ],
+    "compAct": 48000,
+    "compDes": 60000,
+    "fuente": "Referido"
+  },
+  {
+    "id": "c3",
+    "nombre": "Daniela Ríos Landa",
+    "titular": "Desarrolladora Java · Spring",
+    "ubicacion": "Monterrey",
+    "email": "daniela.rios@example.com",
+    "github": "driosl",
+    "resumen": "Desarrolladora Java con 3 años en aplicaciones empresariales con Spring Boot y MySQL. Certificada en Google Cloud y con ganas de crecer hacia arquitectura de microservicios.",
+    "experiencia": [
+      {
+        "puesto": "Desarrolladora Java",
+        "empresa": "Seguros del Norte",
+        "periodo": "2022 – Actualidad",
+        "logros": [
+          "Mantengo servicios en Spring Boot y MySQL para cotización de seguros.",
+          "Migré 2 servicios a contenedores Docker en Google Cloud."
+        ]
+      },
+      {
+        "puesto": "Desarrolladora Jr",
+        "empresa": "Consultora TI Norte",
+        "periodo": "2021 – 2022",
+        "logros": [
+          "Escribí pruebas unitarias con JUnit y participé en revisiones de código."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Ingeniería en Tecnologías de la Información",
+        "institucion": "Tec de Monterrey",
+        "periodo": "2017 – 2021"
+      }
+    ],
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "MySQL",
+      "Docker",
+      "Google Cloud",
+      "JUnit",
+      "REST",
+      "Git"
+    ],
+    "certificaciones": [
+      "Google Cloud Certified – Associate Cloud Engineer"
+    ],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "basico"
+      }
+    ],
+    "intereses": [
+      "Cursos en línea de arquitectura de software",
+      "Voluntariado en programas de programación para niñas"
+    ],
+    "compAct": 42000,
+    "compDes": 52000,
+    "fuente": "Chatbot"
+  },
+  {
+    "id": "c4",
+    "nombre": "Rodrigo Alcalá Fuentes",
+    "titular": "Senior Java/Kotlin Engineer · Banca",
+    "ubicacion": "Ciudad de México",
+    "email": "rodrigo.alcala@example.com",
+    "github": "ralcala",
+    "resumen": "Ingeniero senior con 10 años en banca y pagos. Especialista en Java, Kotlin y Spring Boot con microservicios y Kafka en producción. Sin experiencia profesional en Node.js.",
+    "experiencia": [
+      {
+        "puesto": "Senior Backend Engineer",
+        "empresa": "Banco Nacional Digital (banca)",
+        "periodo": "2018 – Actualidad",
+        "logros": [
+          "Diseñé microservicios de transferencias SPEI con Kotlin, Spring Boot y Kafka.",
+          "Lideré un equipo de 6 personas y estandaricé la arquitectura orientada a eventos.",
+          "Alta disponibilidad 99.99% en Oracle y AWS."
+        ]
+      },
+      {
+        "puesto": "Backend Developer",
+        "empresa": "Financiera Central",
+        "periodo": "2014 – 2018",
+        "logros": [
+          "Desarrollé procesos de conciliación de pagos en Java y Oracle.",
+          "Implementé seguridad con OAuth2."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Ingeniería en Sistemas Computacionales",
+        "institucion": "IPN",
+        "periodo": "2010 – 2014"
+      }
+    ],
+    "skills": [
+      "Java",
+      "Kotlin",
+      "Spring Boot",
+      "Kafka",
+      "Oracle",
+      "PostgreSQL",
+      "AWS",
+      "Microservicios",
+      "Arquitectura orientada a eventos",
+      "REST",
+      "OAuth2",
+      "Docker",
+      "Kubernetes"
+    ],
+    "certificaciones": [
+      "Oracle Certified Professional Java SE"
+    ],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "avanzado"
+      }
+    ],
+    "intereses": [
+      "Ciberseguridad",
+      "Guardias 24/7 en banca",
+      "Docencia universitaria"
+    ],
+    "compAct": 78000,
+    "compDes": 90000,
+    "fuente": "LinkedIn"
+  },
+  {
+    "id": "c5",
+    "nombre": "Ximena Salazar Pineda",
+    "titular": "Data Scientist · Machine Learning",
+    "ubicacion": "Querétaro",
+    "email": "ximena.salazar@example.com",
+    "github": "xsalazar",
+    "resumen": "Científica de datos con 5 años en modelos de riesgo y recomendación. Trabajo con Python, pandas, scikit-learn y PyTorch, y consulto grandes volúmenes en SQL.",
+    "experiencia": [
+      {
+        "puesto": "Data Scientist",
+        "empresa": "Retail Analytics Group (retail)",
+        "periodo": "2021 – Actualidad",
+        "logros": [
+          "Construí un modelo de recomendación que subió 12% la conversión.",
+          "Automaticé pipelines de datos en Python y SQL sobre BigQuery."
+        ]
+      },
+      {
+        "puesto": "Analista de Datos",
+        "empresa": "Consultora de Riesgo",
+        "periodo": "2019 – 2021",
+        "logros": [
+          "Desarrollé modelos de scoring de crédito con scikit-learn."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Maestría en Ciencia de Datos",
+        "institucion": "CIMAT",
+        "periodo": "2017 – 2019"
+      }
+    ],
+    "skills": [
+      "Python",
+      "pandas",
+      "scikit-learn",
+      "PyTorch",
+      "SQL",
+      "BigQuery",
+      "Machine learning",
+      "Jupyter",
+      "Git"
+    ],
+    "certificaciones": [
+      "TensorFlow Developer Certificate"
+    ],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "avanzado"
+      }
+    ],
+    "intereses": [
+      "Hackathons de datos",
+      "Divulgación científica"
+    ],
+    "compAct": 60000,
+    "compDes": 72000,
+    "fuente": "Bolsa de trabajo"
+  },
+  {
+    "id": "c6",
+    "nombre": "Paulina Beltrán Cano",
+    "titular": "DevOps / SRE Engineer",
+    "ubicacion": "Puebla",
+    "email": "paulina.beltran@example.com",
+    "github": "pbeltranc",
+    "resumen": "Ingeniera DevOps con 7 años automatizando infraestructura en AWS con Terraform y Kubernetes. Escribo herramientas en Go y Python y lidero la práctica de observabilidad.",
+    "experiencia": [
+      {
+        "puesto": "SRE Sr",
+        "empresa": "Plataforma Cloud MX",
+        "periodo": "2020 – Actualidad",
+        "logros": [
+          "Reduje 50% el tiempo de despliegue con pipelines de CI/CD en GitHub Actions.",
+          "Administro clústeres Kubernetes en AWS EKS con Terraform.",
+          "Definí SLOs y alertas con Prometheus y Grafana; guardias on-call rotativas."
+        ]
+      },
+      {
+        "puesto": "DevOps Engineer",
+        "empresa": "Software Factory",
+        "periodo": "2017 – 2020",
+        "logros": [
+          "Contenericé 30 aplicaciones con Docker.",
+          "Escribí automatizaciones en Bash y Python."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Ingeniería en Telemática",
+        "institucion": "BUAP",
+        "periodo": "2013 – 2017"
+      }
+    ],
+    "skills": [
+      "AWS",
+      "Terraform",
+      "Kubernetes",
+      "Docker",
+      "CI/CD",
+      "GitHub Actions",
+      "Prometheus",
+      "Grafana",
+      "Go",
+      "Python",
+      "Bash",
+      "Linux",
+      "PostgreSQL"
+    ],
+    "certificaciones": [
+      "AWS Certified DevOps Engineer",
+      "Certified Kubernetes Administrator"
+    ],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "avanzado"
+      }
+    ],
+    "intereses": [
+      "Comunidad DevOps de Puebla (organizadora)",
+      "Guardias on-call",
+      "Voluntariado"
+    ],
+    "compAct": 65000,
+    "compDes": 78000,
+    "fuente": "Referido"
+  },
+  {
+    "id": "c7",
+    "nombre": "Iván Cortés Mendoza",
+    "titular": "Frontend Engineer Sr · React",
+    "ubicacion": "Ciudad de México",
+    "email": "ivan.cortes@example.com",
+    "github": "icortesm",
+    "resumen": "Desarrollador frontend con 6 años en React, TypeScript y Next.js. Cuido rendimiento, accesibilidad y sistemas de diseño con Storybook.",
+    "experiencia": [
+      {
+        "puesto": "Frontend Engineer Sr",
+        "empresa": "Marketplace Digital (e-commerce)",
+        "periodo": "2020 – Actualidad",
+        "logros": [
+          "Lideré la migración a Next.js: mejoré 35% el LCP.",
+          "Mantengo un sistema de diseño en Storybook usado por 5 equipos.",
+          "Consumo APIs GraphQL y REST."
+        ]
+      },
+      {
+        "puesto": "Frontend Developer",
+        "empresa": "Estudio Web",
+        "periodo": "2017 – 2020",
+        "logros": [
+          "Construí SPAs en React y Redux."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Licenciatura en Diseño y Desarrollo de Software",
+        "institucion": "UAM",
+        "periodo": "2013 – 2017"
+      }
+    ],
+    "skills": [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "JavaScript",
+      "Tailwind CSS",
+      "Storybook",
+      "GraphQL",
+      "Jest",
+      "Cypress",
+      "REST",
+      "Git"
+    ],
+    "certificaciones": [],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "intermedio"
+      }
+    ],
+    "intereses": [
+      "Accesibilidad web",
+      "Open source en UI",
+      "Speaker en meetups de React"
+    ],
+    "compAct": 52000,
+    "compDes": 64000,
+    "fuente": "LinkedIn"
+  },
+  {
+    "id": "c8",
+    "nombre": "Regina Montes Aguilar",
+    "titular": "Systems Engineer · Rust y Go · Pasarelas de pago",
+    "ubicacion": "Ciudad de México",
+    "email": "regina.montes@example.com",
+    "github": "rmontesa",
+    "resumen": "Ingeniera de sistemas con 6 años en backend de alto rendimiento con Rust y Go. Construí el motor de enrutamiento de una pasarela de pagos y hablo en comunidades de Rust en México.",
+    "experiencia": [
+      {
+        "puesto": "Backend Engineer (Rust)",
+        "empresa": "Payments Gateway Startup (pagos)",
+        "periodo": "2021 – Actualidad",
+        "logros": [
+          "Construí el motor de enrutamiento de pagos multiproveedor en Rust con PostgreSQL.",
+          "Integré Stripe y Adyen y reduje 25% el costo por transacción con enrutamiento inteligente.",
+          "Diseñé APIs REST y gRPC con alta disponibilidad."
+        ]
+      },
+      {
+        "puesto": "Backend Developer (Go)",
+        "empresa": "Logística Ágil",
+        "periodo": "2018 – 2021",
+        "logros": [
+          "Desarrollé microservicios en Go con Docker y Kafka."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Ingeniería en Sistemas",
+        "institucion": "UNAM",
+        "periodo": "2014 – 2018"
+      }
+    ],
+    "skills": [
+      "Rust",
+      "Go",
+      "PostgreSQL",
+      "gRPC",
+      "REST",
+      "Kafka",
+      "Docker",
+      "Microservicios",
+      "Stripe",
+      "Adyen",
+      "Pasarelas de pago",
+      "Redis",
+      "Linux"
+    ],
+    "certificaciones": [],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "avanzado"
+      }
+    ],
+    "intereses": [
+      "Comunidad RustMX (organizadora y speaker)",
+      "Open source",
+      "Hackathons"
+    ],
+    "compAct": 70000,
+    "compDes": 85000,
+    "fuente": "Referido"
+  },
+  {
+    "id": "c9",
+    "nombre": "Jorge Luis Navarro Prieto",
+    "titular": "Desarrollador Jr · JavaScript (egresado de bootcamp)",
+    "ubicacion": "Mérida",
+    "email": "jorge.navarro@example.com",
+    "github": "jlnavarrop",
+    "resumen": "Desarrollador junior egresado de bootcamp con 1 año de experiencia en JavaScript, Node.js y MongoDB. Muy autodidacta y con proyectos propios en GitHub.",
+    "experiencia": [
+      {
+        "puesto": "Desarrollador Jr",
+        "empresa": "Startup de Delivery",
+        "periodo": "2025 – Actualidad",
+        "logros": [
+          "Construí endpoints REST con Node.js, Express y MongoDB.",
+          "Apoyé en pruebas con Jest."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Bootcamp Full-stack JavaScript",
+        "institucion": "Academia Código MX",
+        "periodo": "2024"
+      },
+      {
+        "titulo": "Licenciatura en Administración (trunca)",
+        "institucion": "UADY",
+        "periodo": "2019 – 2022"
+      }
+    ],
+    "skills": [
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "HTML/CSS",
+      "Git"
+    ],
+    "certificaciones": [],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "basico"
+      }
+    ],
+    "intereses": [
+      "Autodidacta (cursos en línea)",
+      "Proyectos open source personales",
+      "Disponible para reubicarse"
+    ],
+    "compAct": 22000,
+    "compDes": 30000,
+    "fuente": "Bolsa de trabajo"
+  },
+  {
+    "id": "c10",
+    "nombre": "Camila Ferrer Ochoa",
+    "titular": "QA Automation Engineer (SDET)",
+    "ubicacion": "Monterrey",
+    "email": "camila.ferrer@example.com",
+    "github": "cferrero",
+    "resumen": "SDET con 5 años automatizando pruebas de APIs y de interfaz con TypeScript, Playwright y Jest. Integro las pruebas en CI/CD y promuevo la cultura de calidad.",
+    "experiencia": [
+      {
+        "puesto": "SDET Sr",
+        "empresa": "Soluciones Pago Seguro (pagos)",
+        "periodo": "2021 – Actualidad",
+        "logros": [
+          "Automaticé 900 pruebas de API y E2E con Playwright y Jest en TypeScript.",
+          "Integré la suite en GitHub Actions: los defectos en producción bajaron 30%.",
+          "Capacito a desarrolladores en pruebas y TDD."
+        ]
+      },
+      {
+        "puesto": "QA Analyst",
+        "empresa": "Retail Corp",
+        "periodo": "2019 – 2021",
+        "logros": [
+          "Diseñé casos de prueba y automaticé con Cypress."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Ingeniería en Sistemas",
+        "institucion": "Tec de Monterrey",
+        "periodo": "2015 – 2019"
+      }
+    ],
+    "skills": [
+      "TypeScript",
+      "Playwright",
+      "Jest",
+      "Cypress",
+      "API testing",
+      "Postman",
+      "CI/CD",
+      "GitHub Actions",
+      "Docker",
+      "TDD",
+      "Node.js",
+      "SQL"
+    ],
+    "certificaciones": [
+      "ISTQB Foundation"
+    ],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "avanzado"
+      }
+    ],
+    "intereses": [
+      "Comunidad de testing en Monterrey",
+      "Docencia y talleres",
+      "Disponible para viajar"
+    ],
+    "compAct": 45000,
+    "compDes": 56000,
+    "fuente": "Chatbot"
+  },
+  {
+    "id": "c11",
+    "nombre": "Ana Lucía Paredes Rangel",
+    "titular": "Mobile Developer · Flutter y Dart · Apps de movilidad",
+    "ubicacion": "Ciudad de México",
+    "email": "ana.paredes@example.com",
+    "github": "anaparedes-dev",
+    "resumen": "Desarrolladora móvil con 5 años construyendo apps con Flutter y Dart para Android e iOS. Lideré la app de movilidad de una startup (400 mil descargas) e integré pagos con tarjeta dentro de la app. Organizo la comunidad Flutter México.",
+    "experiencia": [
+      {
+        "puesto": "Mobile Developer (Flutter)",
+        "empresa": "Movilidad Urbana MX (movilidad)",
+        "periodo": "2022 – Actualidad",
+        "logros": [
+          "Lideré la app de movilidad en Flutter y Dart para Android e iOS (más de 400 mil descargas).",
+          "Integré pagos con tarjeta y billetera dentro de la app con Stripe y bajé 30% el abandono en el cobro.",
+          "Conecté la app con Firebase (autenticación, Firestore y notificaciones push) y con APIs REST.",
+          "Mentoricé a 2 desarrolladores junior y armé el pipeline de CI/CD con GitHub Actions."
+        ]
+      },
+      {
+        "puesto": "Android Developer (Kotlin)",
+        "empresa": "FinApp Móvil (fintech)",
+        "periodo": "2020 – 2022",
+        "logros": [
+          "Desarrollé módulos de la app bancaria en Kotlin y Jetpack Compose.",
+          "Escribí plugins nativos en C++ y Swift para el lector biométrico."
+        ]
+      }
+    ],
+    "educacion": [
+      {
+        "titulo": "Ingeniería en Sistemas Computacionales",
+        "institucion": "IPN",
+        "periodo": "2015 – 2019"
+      }
+    ],
+    "skills": [
+      "Flutter",
+      "Dart",
+      "Kotlin",
+      "Android",
+      "iOS",
+      "Swift",
+      "C++",
+      "Firebase",
+      "REST",
+      "Stripe",
+      "CI/CD",
+      "Pruebas automatizadas",
+      "Git"
+    ],
+    "certificaciones": [
+      "Google Associate Android Developer"
+    ],
+    "idiomas": [
+      {
+        "idioma": "Inglés",
+        "nivel": "avanzado"
+      }
+    ],
+    "intereses": [
+      "Comunidad Flutter México (organizadora de meetups)",
+      "Open source",
+      "Accesibilidad en apps móviles"
+    ],
+    "compAct": 52000,
+    "compDes": 62000,
+    "fuente": "Chatbot"
+  }
 ]
