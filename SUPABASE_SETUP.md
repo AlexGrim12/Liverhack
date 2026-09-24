@@ -65,11 +65,13 @@ Sin variables de entorno todo sigue funcionando en modo demo (datos en memoria y
 
 ## Reiniciar la base al happy path
 
-`supabase/demo_data.sql` es **idempotente**: cada vez que lo corres borra lo transaccional (vacantes, candidatos, entrevistas, notificaciones, chat de IA), reinicia los folios y lo vuelve a crear como arranca la demo. Conserva usuarios, catálogos y credenciales de Google.
+La lógica vive en la función `public.reset_demo()` (migración `20260924000100_reset_demo.sql`). Es **idempotente**: borra lo transaccional (vacantes, candidatos, entrevistas, notificaciones, chat de IA), reinicia los folios y lo recrea como arranca la demo. Conserva usuarios, catálogos y credenciales de Google. Solo `service_role` puede ejecutarla.
 
-1. (Una sola vez) corre `supabase/migrations/20260924000000_hm_no_cancela.sql`: el HM ya no cancela vacantes.
-2. En Mac copia el script: `pbcopy < supabase/demo_data.sql`
-3. Supabase → **SQL Editor** → pega → **Run**.
+**Una sola vez** en el SQL Editor: migraciones `20260924000000_hm_no_cancela.sql` y `20260924000100_reset_demo.sql`.
+
+**Desde la app (botón oculto):** con `ALLOW_DEMO_RESET=true` en `.env.local` (y reiniciar el servidor), entra como **HRBP** y usa **Control + Option + R** (Mac) o **triple clic en el logo de Liverpool**. Aparece "Restaurando la base…" y al terminar "Base restaurada al happy path". La ruta `/api/admin/reset-demo` exige ese interruptor, sesión activa y rol HRBP; sin la variable responde 403.
+
+**A mano:** en Mac `pbcopy < supabase/demo_data.sql`, pega en el SQL Editor y Run (solo ejecuta `select public.reset_demo();`).
 
 Queda: 4 vacantes (Pagos en Selección/amarillo, Marketing en Atracción/verde, Logística en Oferta/rojo, Ventas Digital por validar), Mariana con screening de RH (Sofía) + entrevista técnica (Diego y Karla) recomendadas, Emiliano con entrevista agendada y Rodrigo finalista en Oferta.
 No borra los CVs ya subidos al bucket `cvs` (Storage). Las ofertas y el portal del candidato solo existen en modo demo: la base aún no tiene tabla de ofertas.

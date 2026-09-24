@@ -60,7 +60,7 @@ import AtCompat, { CompatUI } from "@/components/screens/AtCompat";
 import CerrarVacanteModal, { MotivoCierre } from "@/components/screens/CerrarVacanteModal";
 import HmEntrevista, { EntrevistaVM } from "@/components/screens/HmEntrevista";
 import type { GoogleActions } from "@/components/screens/GoogleActions";
-import { LiverExito, LiverTransicion } from "@/components/LiverLoader";
+import { LiverExito, LiverSplash, LiverTransicion } from "@/components/LiverLoader";
 import CandidatoPortal, { type PersonaPortal } from "@/components/screens/CandidatoPortal";
 import HmChat from "@/components/screens/HmChat";
 import UserDashboard from "@/components/screens/UserDashboard";
@@ -329,8 +329,26 @@ export default function App() {
     return () => clearTimeout(t);
   }, [transKey]);
 
-  // Modo demo: todo el estado vive en memoria, así que reiniciar es recargar la app en su estado inicial (sin repetir la pantalla de carga)
-  function reiniciarDemo() {
+  // Reinicio al happy path. Modo demo: todo el estado vive en memoria, así que es recargar la app (sin repetir la pantalla de carga).
+  // Modo conectado: pide al servidor restaurar la base (solo HRBP y solo si el servidor lo permite) y vuelve a leer los datos.
+  const [restaurando, setRestaurando] = useState(false);
+  async function reiniciarDemo() {
+    if (SUPA) {
+      if (role !== "hrbp") return setAccionMsg({ ok: false, text: "Solo el HRBP puede restaurar la base." });
+      if (restaurando) return;
+      setRestaurando(true);
+      try {
+        await apiPost("/api/admin/reset-demo");
+        await refresh();
+        setScreen(DEFAULT_SCREEN.hrbp);
+        celebrar("Base restaurada al happy path");
+      } catch (e) {
+        setAccionMsg({ ok: false, text: errMsg(e) });
+      } finally {
+        setRestaurando(false);
+      }
+      return;
+    }
     try {
       sessionStorage.setItem("liver-sin-splash", "1");
     } catch {
@@ -338,12 +356,13 @@ export default function App() {
     }
     window.location.assign("/");
   }
+  const reiniciarRef = useRef(reiniciarDemo);
+  reiniciarRef.current = reiniciarDemo;
 
   // Atajo oculto para reiniciar la demo: Ctrl+Alt+R (también triple clic en el logo)
   useEffect(() => {
-    if (SUPA) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.altKey && e.code === "KeyR") reiniciarDemo(); // e.code: en Mac Option+R produce "®" en e.key
+      if (e.ctrlKey && e.altKey && e.code === "KeyR") void reiniciarRef.current(); // e.code: en Mac Option+R produce "®" en e.key
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -1401,6 +1420,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-surface-canvas text-ink-title antialiased flex flex-col">
       <LiverTransicion clave={transKey} />
+      {restaurando && <LiverSplash label="Restaurando la base…" />}
       <LiverExito clave={exito.k} texto={exito.texto} />
       <TopBar
         roleLabel={ROLE_LABELS[role]}
@@ -1410,7 +1430,7 @@ export default function App() {
         onOpenSidebar={() => setSidebarOpen(true)}
         notifications={pendientesVM}
         onVerTodosPendientes={() => nav(`${role}-pendientes`)}
-        onReiniciar={SUPA ? undefined : reiniciarDemo}
+        onReiniciar={() => void reiniciarDemo()}
       />
       <div className="flex flex-1">
         <Sidebar items={sidebarItems} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
