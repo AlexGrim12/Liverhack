@@ -62,6 +62,7 @@ import HmEntrevista, { EntrevistaVM } from "@/components/screens/HmEntrevista";
 import type { GoogleActions } from "@/components/screens/GoogleActions";
 import { LiverExito, LiverSplash, LiverTransicion } from "@/components/LiverLoader";
 import CandidatoPortal, { type PersonaPortal } from "@/components/screens/CandidatoPortal";
+import ChatSimulado from "@/components/ChatSimulado";
 import FooterMarca from "@/components/FooterMarca";
 import HmChat from "@/components/screens/HmChat";
 import UserDashboard from "@/components/screens/UserDashboard";
@@ -683,7 +684,7 @@ export default function App() {
             r === "enviado"
               ? { ok: true, text: `Aviso enviado a Google Chat: «${v.titulo}» está fuera de tiempo.` }
               : r === "no_configurado"
-              ? { ok: false, text: "Google Chat no está configurado (falta GOOGLE_CHAT_WEBHOOK_URL en .env.local)." }
+              ? { ok: true, text: `Aviso publicado en el espacio de Chat de la demo (para enviarlo a Google Chat falta GOOGLE_CHAT_WEBHOOK_URL).` }
               : { ok: false, text: "No se pudo enviar el aviso a Google Chat." }
           );
         },
@@ -1669,6 +1670,7 @@ export default function App() {
         </main>
       </div>
       <FooterMarca onReiniciar={() => void reiniciarDemo()} />
+      <ChatSimulado />
     </div>
   );
 }

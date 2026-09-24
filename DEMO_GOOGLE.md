@@ -20,6 +20,8 @@ Tres piezas que funcionan en el **modo demo** (sin login de la plataforma ni dom
 
 ## 2. Google Chat (10 min)
 
+> **¿Tu administrador restringe los webhooks?** No hace falta nada más: la app trae un **espacio de Chat simulado** (botón redondo abajo a la derecha, con un globo cuando llega un aviso). Muestra los mismos cuatro mensajes, con el mismo texto, en el momento en que ocurren. Es una vista dentro de la app, no Google Chat: dilo así si preguntan. Si algún día consigues el webhook, el mensaje llega a los dos lados.
+
 Los webhooks de Chat requieren una cuenta de **Google Workspace** (no sirve Gmail personal; verifícalo antes del pitch).
 
 1. En Google Chat crea un **espacio** (por ejemplo, "Liver Companion — Demo") y añade a quien quiera ver los avisos.
@@ -38,7 +40,7 @@ Los webhooks de Chat requieren una cuenta de **Google Workspace** (no sirve Gmai
 | Hiring Manager aprueba a un finalista | 🎯 Nuevo finalista — *candidato*, feedback 2 de 2 recomiendan |
 | BP pulsa **Avisar en Google Chat** en una vacante en rojo | 🔴 Fuera de tiempo — *vacante*, etapa y responsable |
 
-Sin webhook configurado la app funciona igual y simplemente no envía nada (el botón *Avisar en Google Chat* explica que falta configurarlo).
+Sin webhook configurado la app funciona igual y simplemente no envía nada (el botón *Avisar en Google Chat* publica el aviso en el espacio de Chat de la app y explica que falta el webhook para enviarlo a Google Chat).
 
 ## Seguridad del endpoint
 

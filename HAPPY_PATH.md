@@ -14,7 +14,7 @@ Modo demo, sin login. Perfiles: HRBP (BP), Reclutamiento (AT), Hiring Manager y 
 2. Título "Arquitecto de Datos — Equipo Pagos", categoría *TI-Sistemas*, elige al BP.
 3. *Enviar al BP*.
 4. Cambia a **HRBP** → *Por validar* → elige a Sofía Martínez como reclutadora → *Aprobar*.
-5. Se ve la animación "Requisición validada" y llega el aviso a Google Chat (si está configurado).
+5. Se ve la animación "Requisición validada" y llega el aviso al espacio de Chat de la app (botón redondo abajo a la derecha; a Google Chat solo si hay webhook).
 
 ## 2 · Ver: cada etapa tiene dueño y semáforo
 1. **HRBP** → *Inicio*: la vacante de Logística está en **rojo**.
