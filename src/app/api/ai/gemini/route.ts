@@ -3,6 +3,7 @@ import { geminiJson, geminiText } from "@/lib/google/gemini";
 import { GOOGLE } from "@/lib/google/config";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 30; // Gemini puede tardar ~13 s con contexto; el límite por defecto de Vercel Hobby es menor
 
 // IA generativa OPCIONAL para la demo (no requiere sesión): si hay GEMINI_API_KEY, la interfaz usa Gemini para resumir
 // transcripciones y redactar la explicación de compatibilidad; sin clave usa el motor local. Entradas acotadas y limitadas por IP.

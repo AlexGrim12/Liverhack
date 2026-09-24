@@ -3,6 +3,7 @@ import type { RepoInfo } from "@/lib/ai/types";
 import { parseRepo } from "@/lib/ai/repo-url";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 30; // Gemini puede tardar ~13 s con contexto; el límite por defecto de Vercel Hobby es menor
 
 // Trae un repositorio PÚBLICO de GitHub (sin login del usuario): metadatos, lenguajes, topics, README y archivos de
 // dependencias. Con GITHUB_TOKEN (opcional) sube el límite de consultas de 60 a 5,000 por hora.

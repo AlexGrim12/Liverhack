@@ -318,6 +318,20 @@ export default function App() {
   const [transKey, setTransKey] = useState(0);
   const [exito, setExito] = useState<{ k: number; texto: string }>({ k: 0, texto: "" });
   const celebrar = (texto: string) => setExito((e) => ({ k: e.k + 1, texto }));
+  // Modo demo: tras el reinicio oculto se avisa con un toast y una notificación en la campana (la hora viene de antes de recargar)
+  const [reinicioAt, setReinicioAt] = useState<string | null>(null);
+  useEffect(() => {
+    try {
+      const t = sessionStorage.getItem("liver-reinicio");
+      if (t) {
+        sessionStorage.removeItem("liver-reinicio");
+        setReinicioAt(t);
+        celebrar("Demo reiniciada al happy path");
+      }
+    } catch {
+      /* sin almacenamiento */
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!exito.k) return;
     const t = setTimeout(() => setExito((e) => ({ ...e, k: 0 })), 1400);
@@ -351,6 +365,7 @@ export default function App() {
     }
     try {
       sessionStorage.setItem("liver-sin-splash", "1");
+      sessionStorage.setItem("liver-reinicio", new Date().toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit", hour12: false }));
     } catch {
       /* sin almacenamiento: solo se verá la pantalla de carga */
     }
@@ -359,7 +374,7 @@ export default function App() {
   const reiniciarRef = useRef(reiniciarDemo);
   reiniciarRef.current = reiniciarDemo;
 
-  // Atajo oculto para reiniciar la demo: Ctrl+Alt+R (también triple clic en el logo)
+  // Atajo oculto para reiniciar la demo: Ctrl+Alt+R (también triple clic en el texto "Liver Companion" de la barra superior)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.altKey && e.code === "KeyR") void reiniciarRef.current(); // e.code: en Mac Option+R produce "®" en e.key
@@ -1061,7 +1076,10 @@ export default function App() {
             vacanteId: v.id,
           }))
       : [];
-  const allPendientes = SUPA ? supaPendientes : role ? [...dynamicPendientes, ...PENDIENTES[role]] : [];
+  const avisoReinicio: PendienteItem[] = reinicioAt
+    ? [{ id: "reinicio", title: "Demo reiniciada al happy path", subtitle: `Se restauró con el atajo oculto a las ${reinicioAt}.`, due: "Ahora", screen: role ? DEFAULT_SCREEN[role] : "landing" }]
+    : [];
+  const allPendientes = SUPA ? supaPendientes : role ? [...avisoReinicio, ...dynamicPendientes, ...PENDIENTES[role]] : [];
   const pendienteCount = allPendientes.length;
 
   const sidebarItemsByRole: Record<Role, SidebarItem[]> = {
@@ -1105,8 +1123,8 @@ export default function App() {
       const oferta = { sueldo: "$66,000 MXN", inicio: "19 oct 2026", vigencia: "hasta el 30 sep", prestaciones: ["Seguro de gastos médicos mayores", "Bono anual por desempeño", "Vales de despensa y fondo de ahorro", "Esquema híbrido en CDMX (3 días en oficina)"] };
       if (hmDecision === "descartado") return { ...base, estado: "cerrado", pasos: [...previos, paso("Decisión", "hecho", "El equipo continuará con otro perfil")], responsable: "Luis Herrera (Hiring Manager)", plazo: "Proceso cerrado", semaforo: "#9AA0A6" };
       if (etapaV1 >= 5)
-        return { ...base, estado: cierreOferta("mariana") ?? "oferta", pasos: [...previos, paso("Decisión", "hecho", "Eres finalista"), paso("Oferta", cierreOferta("mariana") ? "hecho" : "actual", "Responde antes del 30 sep")], responsable: "Sofía Martínez (Reclutamiento)", plazo: "Responde en 5 días hábiles", semaforo: "#F9A825", oferta, nota: "Después de 2 rondas de entrevista (RH y técnica), 3 de 3 evaluaciones a favor y una decisión con contexto, el equipo te eligió." };
-      if (hmDecision === "finalista") return { ...base, estado: "finalista", pasos: [...previos, paso("Decisión", "hecho", "Eres finalista"), paso("Oferta", "actual", "Recursos Humanos la prepara")], responsable: "Sofía Martínez (Reclutamiento)", plazo: "Oferta en 2 días hábiles", semaforo: "#1E8E3E" };
+        return { ...base, estado: cierreOferta("mariana") ?? "oferta", pasos: [...previos, paso("Decisión", "hecho", "Eres finalista"), paso("Oferta", cierreOferta("mariana") ? "hecho" : "actual", "Responde antes del 30 sep")], responsable: "Patricia Vega (Business Partner)", plazo: "Responde en 5 días hábiles", semaforo: "#F9A825", oferta, nota: "Después de 2 rondas de entrevista (RH y técnica), 3 de 3 evaluaciones a favor y una decisión con contexto, el equipo te eligió." };
+      if (hmDecision === "finalista") return { ...base, estado: "finalista", pasos: [...previos, paso("Decisión", "hecho", "Eres finalista"), paso("Oferta", "actual", "Recursos Humanos la prepara")], responsable: "Patricia Vega (Business Partner)", plazo: "Oferta en 2 días hábiles", semaforo: "#1E8E3E" };
       return { ...base, estado: "decision", pasos: [...previos, paso("Decisión", "actual", "El Hiring Manager revisa el feedback de las 2 rondas"), paso("Oferta", "pendiente")], responsable: "Luis Herrera (Hiring Manager)", plazo: "Respuesta en 2 días hábiles", semaforo: "#F9A825" };
     })();
     return [
@@ -1115,7 +1133,7 @@ export default function App() {
       { id: "daniela", nombre: "Daniela Ríos Landa", vacante: "Backend Developer Sr — Equipo Pagos", area: "TI y Sistemas", estado: "revision", pasos: [paso("Postulación", "hecho", "Recibimos tu CV"), paso("Screening de RH", "actual", "Sofía Martínez revisa tu perfil"), paso("Entrevista técnica", "pendiente"), paso("Decisión", "pendiente"), paso("Oferta", "pendiente")], responsable: "Sofía Martínez (Reclutamiento)", plazo: "Contacto en 2 días hábiles", semaforo: "#F9A825" },
       (() => {
         const r = cierreOferta("rodrigo");
-        return { id: "rodrigo", nombre: "Rodrigo Beltrán Ochoa", vacante: "Coordinador de Logística CDMX", area: "Logística", estado: etapaV3 >= 5 ? r ?? "oferta" : "decision", pasos: [paso("Postulación", "hecho"), paso("Screening de RH", "hecho"), paso("Entrevista con el equipo", "hecho", "24 sep"), paso("Decisión", "hecho", "Fuiste elegido"), paso("Oferta", r ? "hecho" : "actual", r === "aceptada" ? "Aceptada" : r === "rechazada" ? "Declinada" : "Responde en 3 días hábiles")], responsable: "Jorge Salinas (Reclutamiento)", plazo: r ? "Proceso completo" : "Responde en 3 días hábiles", semaforo: r ? "#1E8E3E" : "#D93025", oferta: { sueldo: "$40,000 MXN", inicio: "12 oct 2026", vigencia: "3 días hábiles", prestaciones: ["Seguro de gastos médicos mayores", "Vales de despensa", "Fondo de ahorro", "Prestaciones superiores a la ley"] } } as PersonaPortal;
+        return { id: "rodrigo", nombre: "Rodrigo Beltrán Ochoa", vacante: "Coordinador de Logística CDMX", area: "Logística", estado: etapaV3 >= 5 ? r ?? "oferta" : "decision", pasos: [paso("Postulación", "hecho"), paso("Screening de RH", "hecho"), paso("Entrevista con el equipo", "hecho", "24 sep"), paso("Decisión", "hecho", "Fuiste elegido"), paso("Oferta", r ? "hecho" : "actual", r === "aceptada" ? "Aceptada" : r === "rechazada" ? "Declinada" : "Responde en 3 días hábiles")], responsable: "Patricia Vega (Business Partner)", plazo: r ? "Proceso completo" : "Responde en 3 días hábiles", semaforo: r ? "#1E8E3E" : "#D93025", oferta: { sueldo: "$40,000 MXN", inicio: "12 oct 2026", vigencia: "3 días hábiles", prestaciones: ["Seguro de gastos médicos mayores", "Vales de despensa", "Fondo de ahorro", "Prestaciones superiores a la ley"] } } as PersonaPortal;
       })(),
       { id: "paulina", nombre: "Paulina Estrada Cano", vacante: "Coordinador de Logística CDMX", area: "Logística", estado: "cerrado", pasos: [paso("Postulación", "hecho"), paso("Screening de RH", "hecho"), paso("Entrevista con el equipo", "hecho"), paso("Decisión", "hecho", "Se continuó con otro perfil")], responsable: "Jorge Salinas (Reclutamiento)", plazo: "Proceso cerrado", semaforo: "#9AA0A6" },
     ];
@@ -1408,12 +1426,15 @@ export default function App() {
 
   if (screen === "landing" || !role) {
     return (
-      <Landing
+      <>
+        <LiverExito clave={exito.k} texto={exito.texto} />
+        <Landing
         onSetRoleHrbp={() => setRole("hrbp")}
         onSetRoleAt={() => setRole("at")}
         onSetRoleHm={() => setRole("hm")}
         onSetRoleCandidato={() => setRole("candidato")}
-      />
+        />
+      </>
     );
   }
 

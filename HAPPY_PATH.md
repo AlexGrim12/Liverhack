@@ -5,7 +5,7 @@ Modo demo, sin login. Perfiles: HRBP (BP), Reclutamiento (AT), Hiring Manager y 
 
 ## Antes de empezar
 - `npm run dev` corriendo, `NEXT_PUBLIC_DEMO_MODE=true` y internet (Gemini y GitHub).
-- Estado inicial: **Ctrl + Alt + R** (en Mac: Control + Option + R; o triple clic en el logo de Liverpool) reinicia todo.
+- Estado inicial: **Ctrl + Alt + R** (en Mac: Control + Option + R; o triple clic en el texto "Liver Companion" de la barra superior) reinicia todo.
 - Vacante protagonista: **Backend Developer Sr — Equipo Pagos**, etapa Selección, 10 candidatos con CV.
 - Mariana empieza **sin oferta**. Quien sí tiene una desde el inicio es Rodrigo (Logística).
 

@@ -69,7 +69,7 @@ La lógica vive en la función `public.reset_demo()` (migración `20260924000100
 
 **Una sola vez** en el SQL Editor: migraciones `20260924000000_hm_no_cancela.sql` y `20260924000100_reset_demo.sql`.
 
-**Desde la app (botón oculto):** con `ALLOW_DEMO_RESET=true` en `.env.local` (y reiniciar el servidor), entra como **HRBP** y usa **Control + Option + R** (Mac) o **triple clic en el logo de Liverpool**. Aparece "Restaurando la base…" y al terminar "Base restaurada al happy path". La ruta `/api/admin/reset-demo` exige ese interruptor, sesión activa y rol HRBP; sin la variable responde 403.
+**Desde la app (botón oculto):** con `ALLOW_DEMO_RESET=true` en `.env.local` (y reiniciar el servidor), entra como **HRBP** y usa **Control + Option + R** (Mac) o **triple clic en el texto "Liver Companion" de la barra superior**. Aparece "Restaurando la base…" y al terminar "Base restaurada al happy path". La ruta `/api/admin/reset-demo` exige ese interruptor, sesión activa y rol HRBP; sin la variable responde 403.
 
 **A mano:** en Mac `pbcopy < supabase/demo_data.sql`, pega en el SQL Editor y Run (solo ejecuta `select public.reset_demo();`).
 

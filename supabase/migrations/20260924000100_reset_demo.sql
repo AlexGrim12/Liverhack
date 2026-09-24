@@ -237,6 +237,10 @@ truncate table public.ai_messages, public.ai_conversations, public.candidate_mes
   update public.notifications set leida_at = now()
    where vacancy_id = v3 and tipo <> 'solicitar_oferta';
 
+  -- Aviso para el HRBP: queda registrado que se restauró la base (aparece en su campana de notificaciones)
+  perform private.notify(hrbp, 'general', 'Base restaurada al happy path',
+    'La base se restauró con el atajo oculto a las ' || to_char(now() at time zone 'America/Mexico_City', 'HH24:MI') || '.',
+    null, null, null, false, null);
 end $fn$;
 
 revoke all on function public.reset_demo() from public, anon, authenticated;

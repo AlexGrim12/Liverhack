@@ -29,7 +29,7 @@ export default function TopBar({
   onOpenSidebar: () => void;
   notifications: NotifItem[];
   onVerTodosPendientes: () => void;
-  onReiniciar?: () => void; // solo en modo demo; se activa con triple clic en el logo (sin botón visible)
+  onReiniciar?: () => void; // solo en modo demo; se activa con triple clic en el texto "Liver Companion" (sin botón visible)
 }) {
 
   const [notifOpen, setNotifOpen] = useState(false);
@@ -66,12 +66,21 @@ export default function TopBar({
           </button>
 
           <div
-            onClick={(e) => (e.detail >= 3 && onReiniciar ? onReiniciar() : resetRole())}
+            onClick={resetRole}
             className="flex items-center gap-2.5 cursor-pointer select-none"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/brand/liverpool.png" alt="Liverpool" className="h-7 w-auto shrink-0" />
-            <span className="hidden sm:block text-xs font-semibold text-accent border-l border-line pl-2.5 leading-none py-1">Liver Companion</span>
+            <span
+              onClick={(e) => {
+                // gesto oculto: triple clic en este texto reinicia la demo (el clic simple no hace nada)
+                e.stopPropagation();
+                if (e.detail >= 3 && onReiniciar) onReiniciar();
+              }}
+              className="hidden sm:block text-xs font-semibold text-accent border-l border-line pl-2.5 leading-none py-1"
+            >
+              Liver Companion
+            </span>
           </div>
         </div>
 
