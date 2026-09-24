@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Home, Calendar, ListChecks, Plus, ShieldCheck, Sparkles } from "lucide-react";
+import { Home, Calendar, ListChecks, Plus, ShieldCheck, Sparkles, Table2 } from "lucide-react";
 import {
   ETAPAS,
   VACANTES_RAW,
@@ -62,6 +62,10 @@ import HmEntrevista, { EntrevistaVM } from "@/components/screens/HmEntrevista";
 import type { GoogleActions } from "@/components/screens/GoogleActions";
 import { LiverExito, LiverSplash, LiverTransicion } from "@/components/LiverLoader";
 import CandidatoPortal, { type PersonaPortal } from "@/components/screens/CandidatoPortal";
+import AtPostulaciones, { type FilaPost } from "@/components/screens/AtPostulaciones";
+import HiloComentarios from "@/components/HiloComentarios";
+import type { ConfigEvaluacion } from "@/components/EnviarEvaluacionModal";
+import { AUTOR_POR_ROL, HOY, SEED_COMENTARIOS, SEED_EVALUACIONES, TIPOS_EVALUACION, etiquetaEvaluacion, fmtDia, sumaDiasHabiles, type Comentario, type Evaluacion, type RolComentario } from "@/lib/demo/postulaciones";
 import ChatSimulado from "@/components/ChatSimulado";
 import FooterMarca from "@/components/FooterMarca";
 import HmChat from "@/components/screens/HmChat";
@@ -174,6 +178,9 @@ export default function App() {
   const [hmDecision, setHmDecision] = useState<string | null>(null);
   const [personaId, setPersonaId] = useState("mariana");
   const [ofertaResp, setOfertaResp] = useState<Record<string, "aceptada" | "rechazada">>({});
+  // Evaluación previa (assessment) y comentarios del equipo por postulación (demo)
+  const [evaluaciones, setEvaluaciones] = useState<Record<string, Evaluacion>>(SEED_EVALUACIONES);
+  const [comentarios, setComentarios] = useState<Comentario[]>(SEED_COMENTARIOS);
 
   const [chatInput, setChatInput] = useState("");
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>(SUPA ? [] : INITIAL_CHAT);
@@ -1032,6 +1039,7 @@ export default function App() {
     "user-dashboard": "dashboard",
     "user-detalle": "dashboard",
     "candidato-portal": "portal",
+    postulaciones: "postulaciones",
     "hrbp-calendario": "calendario",
     "at-calendario": "calendario",
     "hm-calendario": "calendario",
@@ -1110,13 +1118,68 @@ export default function App() {
     ],
     candidato: [{ key: "portal", label: "Mi proceso", icon: Home, onClick: () => nav("candidato-portal"), isActive: true }],
   };
-  const sidebarItems = role ? sidebarItemsByRole[role] : [];
+  const itemPostulaciones: SidebarItem = { key: "postulaciones", label: "Postulaciones", icon: Table2, onClick: () => nav("postulaciones"), isActive: activeSection === "postulaciones" };
+  const sidebarItems = role ? [...sidebarItemsByRole[role], ...(!SUPA && (role === "hrbp" || role === "at" || role === "hm") ? [itemPostulaciones] : [])] : [];
+
+  // ---- Postulaciones: vista masiva, evaluación previa y comentarios ----
+  const rolCom: RolComentario | null = role === "at" || role === "hm" || role === "hrbp" ? role : null;
+  const horaAhora = () => `${fmtDia(HOY)} · ${new Date().toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit", hour12: false })}`;
+  function comentar(ids: string[], texto: string, rolForzado?: RolComentario) {
+    const r = rolForzado ?? rolCom;
+    if (!r) return;
+    const hora = horaAhora();
+    setComentarios((prev) => [...prev, ...ids.map((id, i) => ({ id: `n-${Date.now()}-${i}`, candidatoId: id, autor: AUTOR_POR_ROL[r], rol: r, texto, hora }))]);
+  }
+  const filasPost: FilaPost[] = SUPA
+    ? []
+    : vacantesData
+        .filter((v) => role !== "at" || v.etapaIndex >= 1)
+        .flatMap((v) =>
+          [...(CANDIDATOS_RAW[v.id] || []), ...(demoCands[v.id] || [])].map((c) => {
+            const r = c.id === "c5" ? ofertaResp.rodrigo : c.id === "cv-c1" ? ofertaResp.mariana : undefined;
+            const f = c.cvId && compatUI.analizado && v.id === VACANTE_CON_CVS ? compatUI.filas.find((x) => x.cv.id === c.cvId) : null;
+            return {
+              id: c.id,
+              vacanteId: v.id,
+              vacante: v.titulo,
+              nombre: c.nombre,
+              iniciales: initials(c.nombre),
+              compat: f ? f.compat.total : c.compat,
+              estatus: r ? (r === "aceptada" ? "Oferta aceptada" : "Oferta declinada") : c.estatus,
+            };
+          })
+        );
+  function enviarEvaluaciones(ids: string[], cfg: ConfigEvaluacion): { enviadas: number; omitidas: number } {
+    const vence = fmtDia(sumaDiasHabiles(HOY, cfg.plazoDias));
+    const nuevos: Record<string, Evaluacion> = {};
+    let omitidas = 0;
+    ids.forEach((id) => {
+      const previa = evaluaciones[id];
+      if (previa && previa.estado !== "vencida") omitidas += 1;
+      else nuevos[id] = { tipo: cfg.tipo, estado: "enviada", enviada: fmtDia(HOY), vence };
+    });
+    const enviados = Object.keys(nuevos);
+    if (enviados.length) {
+      setEvaluaciones((prev) => ({ ...prev, ...nuevos }));
+      comentar(enviados, `Evaluación previa enviada (${TIPOS_EVALUACION[cfg.tipo].label}). Vence el ${vence}.`, "at");
+      const objetivo = filasPost.filter((f) => enviados.includes(f.id));
+      const vacs = Array.from(new Set(objetivo.map((f) => f.vacante)));
+      void avisarChat("evaluacion_enviada", { candidato: enviados.length === 1 ? objetivo[0]?.nombre ?? "1 candidato" : `${enviados.length} candidatos`, vacante: vacs.length === 1 ? vacs[0] : `${vacs.length} vacantes`, cuando: vence });
+      celebrar(`Evaluación enviada a ${enviados.length}`);
+    }
+    return { enviadas: enviados.length, omitidas };
+  }
+  const calificarEvaluacion = (id: string, score: number) => setEvaluaciones((prev) => (prev[id] ? { ...prev, [id]: { ...prev[id], estado: "calificada", score } } : prev));
+  const entregarEvaluacion = (id: string) => {
+    setEvaluaciones((prev) => (prev[id] ? { ...prev, [id]: { ...prev[id], estado: "entregada" } } : prev));
+    celebrar("Evaluación entregada");
+  };
 
   // Portal de la persona candidata: lo que ve depende del estado real de su proceso (mismas etapas y semáforo que el equipo)
   const etapaV1 = vacantesData.find((v) => v.id === "v1")?.etapaIndex ?? 4;
   const etapaV3 = vacantesData.find((v) => v.id === "v3")?.etapaIndex ?? 5;
   const paso = (label: string, estado: "hecho" | "actual" | "pendiente", detalle?: string) => ({ label, estado, detalle });
-  const personasPortal: PersonaPortal[] = (() => {
+  const personasPortalBase: PersonaPortal[] = (() => {
     const cierreOferta = (id: string) => ofertaResp[id];
     // Mariana avanza según lo que decida el HM en la demo
     const mariana: PersonaPortal = (() => {
@@ -1140,6 +1203,11 @@ export default function App() {
       { id: "paulina", nombre: "Paulina Estrada Cano", vacante: "Coordinador de Logística CDMX", area: "Logística", estado: "cerrado", pasos: [paso("Postulación", "hecho"), paso("Screening de RH", "hecho"), paso("Entrevista con el equipo", "hecho"), paso("Decisión", "hecho", "Se continuó con otro perfil")], responsable: "Jorge Salinas (Reclutamiento)", plazo: "Proceso cerrado", semaforo: "#9AA0A6" },
     ];
   })();
+  const CAND_PORTAL: Record<string, string> = { mariana: "cv-c1", emiliano: "cv-c2", daniela: "cv-c3", rodrigo: "c5", paulina: "c6" };
+  const personasPortal: PersonaPortal[] = personasPortalBase.map((p) => {
+    const e = evaluaciones[CAND_PORTAL[p.id]];
+    return e ? { ...p, evaluacion: { tipo: TIPOS_EVALUACION[e.tipo].label, estado: e.estado, vence: e.vence } } : p;
+  });
   function responderOferta(id: string, acepta: boolean) {
     setOfertaResp((prev) => ({ ...prev, [id]: acepta ? "aceptada" : "rechazada" }));
     if (acepta) celebrar(id === "mariana" ? "¡Mariana aceptó la oferta!" : "¡Oferta aceptada!");
@@ -1576,6 +1644,7 @@ export default function App() {
         )}
 
         {screen === "at-perfil" && activeCandidato && (
+          <>
           <AtPerfil
             candidato={activeCandidato}
             agendaConfirmed={agendaConfirmed}
@@ -1592,6 +1661,26 @@ export default function App() {
             analisisCv={analisisCvActivo}
             rondas={!SUPA && (activeCvId ?? cvActivo?.id) === "c1" ? DEMO_ENTREVISTA.rondas : undefined}
           />
+          {!SUPA && rolCom && activeCandidatoId && (
+            <div className="max-w-2xl mx-auto space-y-4 pb-16">
+              <div className="bg-white border border-ink-border rounded-2xl p-4 shadow-xs">
+                <h2 className="text-xs font-bold text-primary uppercase tracking-wider mb-2">Evaluación previa</h2>
+                {evaluaciones[activeCandidatoId] ? (
+                  <p className="text-xs text-ink-body">
+                    <b>{TIPOS_EVALUACION[evaluaciones[activeCandidatoId].tipo].label}</b> · enviada {evaluaciones[activeCandidatoId].enviada}, vence {evaluaciones[activeCandidatoId].vence} ·{" "}
+                    <span className={`font-bold px-2 py-0.5 rounded-full ${etiquetaEvaluacion(evaluaciones[activeCandidatoId]).cls}`}>{etiquetaEvaluacion(evaluaciones[activeCandidatoId]).texto}</span>
+                  </p>
+                ) : (
+                  <p className="text-xs text-ink-muted">Aún no se envía. En <b>Postulaciones</b> puedes enviarla a varias personas a la vez.</p>
+                )}
+              </div>
+              <div className="bg-white border border-ink-border rounded-2xl p-4 shadow-xs">
+                <h2 className="text-xs font-bold text-primary uppercase tracking-wider mb-2">Comentarios del equipo</h2>
+                <HiloComentarios comentarios={comentarios.filter((c) => c.candidatoId === activeCandidatoId)} puedeComentar onComentar={(t) => comentar([activeCandidatoId], t)} />
+              </div>
+            </div>
+          )}
+          </>
         )}
 
         {screen === "hm-entrevista" && (
@@ -1604,6 +1693,15 @@ export default function App() {
             onFeedback={onFeedback}
             onNavHmDashboard={() => nav("hm-dashboard")}
           />
+        )}
+
+        {screen === "hm-entrevista" && !SUPA && rolCom && (
+          <div className="max-w-2xl mx-auto -mt-10 pb-16">
+            <div className="bg-white border border-ink-border rounded-2xl p-4 shadow-xs">
+              <h2 className="text-xs font-bold text-primary uppercase tracking-wider mb-2">Comentarios del equipo sobre Mariana</h2>
+              <HiloComentarios comentarios={comentarios.filter((c) => c.candidatoId === "cv-c1")} puedeComentar onComentar={(t) => comentar(["cv-c1"], t)} />
+            </div>
+          </div>
         )}
 
         {screen === "hm-chat" && (
@@ -1628,7 +1726,29 @@ export default function App() {
 
         {screen === "user-dashboard" && <UserDashboard vacantes={userVacantes} />}
 
-        {screen === "candidato-portal" && <CandidatoPortal personas={personasPortal} activaId={personaId} onElegir={setPersonaId} onResponder={responderOferta} />}
+        {screen === "postulaciones" && rolCom && (
+          <AtPostulaciones
+            filas={filasPost}
+            vacantes={vacantesData.filter((v) => role !== "at" || v.etapaIndex >= 1).map((v) => ({ id: v.id, titulo: v.titulo }))}
+            evaluaciones={evaluaciones}
+            comentarios={comentarios}
+            rol={rolCom}
+            onEnviarEvaluacion={enviarEvaluaciones}
+            onCalificar={calificarEvaluacion}
+            onComentar={(ids, t) => comentar(ids, t)}
+            onVerPerfil={
+              role === "at"
+                ? (f) => {
+                    setActiveVacanteId(f.vacanteId);
+                    setActiveCandidatoId(f.id);
+                    setScreen("at-perfil");
+                  }
+                : undefined
+            }
+          />
+        )}
+
+        {screen === "candidato-portal" && <CandidatoPortal personas={personasPortal} activaId={personaId} onElegir={setPersonaId} onResponder={responderOferta} onEntregarEvaluacion={(pid) => entregarEvaluacion(CAND_PORTAL[pid])} />}
 
         {screen === "user-detalle" && activeVacante && (
           <UserDetalle

@@ -240,3 +240,11 @@ las pantallas (calendario, pendientes, chat, seguimiento) sale de las mismas fil
 3. `supabase gen types typescript` → tipos para el front; `@supabase/ssr` + variables de entorno (`NEXT_PUBLIC_SUPABASE_URL`, clave publicable; la `service_role` solo en el servidor).
 4. Conectar pantallas en este orden: auth/roles → dashboards (`vacancy_overview`) → requisición → candidatos/comparativa → entrevistas → decisión → notificaciones.
 5. Después: Calendar/Meet, cron de Drive/Gemini, bot.
+
+
+## Anexo (demo): evaluación previa, comentarios y vista masiva
+Solo en modo demo (datos en memoria, `src/lib/demo/postulaciones.ts`); el esquema de Supabase aún no tiene tablas para esto.
+- **Evaluación previa (assessment):** la envía el **AT** (tipo, plazo en días hábiles, mensaje) a una o varias postulaciones; la persona candidata la entrega desde su portal y el AT la califica de 0 a 100. Estados: enviada · entregada · calificada · vencida.
+- **Comentarios:** hilo interno por postulación; escriben AT, HM y BP (la persona candidata no lo ve).
+- **Vista masiva:** pantalla *Postulaciones* para AT, HM y BP: filtros, orden, selección múltiple, envío de evaluaciones y comentarios en bloque, exportar CSV.
+- Para llevarlo a la base: tablas `assessments` (application_id, tipo, estado, enviada_at, vence_at, score, enviada_por) y `application_comments` (application_id, autor_id, texto, created_at) con RLS por rol, y un trigger que notifique al entregar.

@@ -18,6 +18,7 @@ export type PersonaPortal = {
   semaforo: string;
   nota?: string; // recuento de sus pruebas, se muestra en la oferta
   entrevista?: { fecha: string; meet: string };
+  evaluacion?: { tipo: string; estado: "enviada" | "entregada" | "calificada" | "vencida"; vence: string }; // evaluación previa que envía el AT
   oferta?: { sueldo: string; inicio: string; vigencia: string; prestaciones: string[] };
 };
 
@@ -37,11 +38,13 @@ export default function CandidatoPortal({
   activaId,
   onElegir,
   onResponder,
+  onEntregarEvaluacion,
 }: {
   personas: PersonaPortal[];
   activaId: string;
   onElegir: (id: string) => void;
   onResponder: (id: string, acepta: boolean) => void;
+  onEntregarEvaluacion?: (personaId: string) => void;
 }) {
   const p = personas.find((x) => x.id === activaId) ?? personas[0];
   const [dudas, setDudas] = useState(false);
@@ -135,6 +138,37 @@ export default function CandidatoPortal({
           </div>
         )}
       </div>
+
+      {p.evaluacion && p.estado !== "cerrado" && (
+        <div
+          className={`rounded-2xl border p-4 shadow-xs ${p.evaluacion.estado === "enviada" ? "bg-amber-50 border-amber-200" : p.evaluacion.estado === "vencida" ? "bg-rose-50 border-rose-200" : "bg-white border-ink-border"}`}
+          role="status"
+        >
+          <p className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">Evaluación previa</p>
+          {p.evaluacion.estado === "enviada" && (
+            <div className="mt-1 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-black text-ink-title">Tienes una evaluación pendiente</p>
+                <p className="text-xs text-ink-body">
+                  {p.evaluacion.tipo} · entrégala antes del <b>{p.evaluacion.vence}</b>.
+                </p>
+              </div>
+              {onEntregarEvaluacion && (
+                <button type="button" onClick={() => onEntregarEvaluacion(p.id)} className="bg-accent text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95">
+                  Entregar evaluación
+                </button>
+              )}
+            </div>
+          )}
+          {p.evaluacion.estado === "entregada" && <p className="mt-1 text-sm font-bold text-ink-title">Recibimos tu evaluación: Reclutamiento la está revisando.</p>}
+          {p.evaluacion.estado === "calificada" && (
+            <p className="mt-1 text-sm font-bold text-emerald-700 inline-flex items-center gap-1.5">
+              <Check className="w-4 h-4" /> Evaluación previa completada
+            </p>
+          )}
+          {p.evaluacion.estado === "vencida" && <p className="mt-1 text-sm font-bold text-rose-700">Tu evaluación venció el {p.evaluacion.vence}. Escribe a tu reclutador para pedir más plazo.</p>}
+        </div>
+      )}
 
       {/* Que todos vean lo mismo: la persona candidata ve las mismas etapas y el mismo semáforo que el equipo */}
       <div className="bg-white border border-ink-border rounded-2xl p-5 shadow-xs space-y-4">

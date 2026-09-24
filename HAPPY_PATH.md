@@ -45,6 +45,15 @@ Modo demo, sin login. Perfiles: HRBP (BP), Reclutamiento (AT), Hiring Manager y 
 4. (Remate) *Aceptar oferta*: "¡Mariana aceptó la oferta!" y la página pasa a verde.
 5. (Opcional) **Reclutamiento** → vacante de Pagos: su estatus es **Oferta aceptada**.
 
+## Extra (opcional): evaluación previa, comentarios y vista masiva
+1. **Reclutamiento** → *Postulaciones* (menú lateral): las 13 postulaciones de las 3 vacantes en una tabla, con evaluación previa y comentarios.
+2. Filtra (por ejemplo *Sin enviar*), marca varias filas → **Enviar evaluación previa** (tipo, plazo en días hábiles, mensaje) → llega el aviso al chat de la app.
+3. Con varias filas marcadas, escribe en **Comentar en todas** para dejar un comentario a la vez; abre una fila (flecha) para ver su hilo y, si está *Por calificar*, **Calificar** de 0 a 100.
+4. **Exportar CSV** baja la tabla filtrada (o solo las marcadas).
+5. **Candidato/a → Daniela**: ve "Tienes una evaluación pendiente" → *Entregar evaluación*; en la tabla del AT (y del HM y del BP) pasa a *Entregada · por calificar*.
+- El HM y el BP ven la misma tabla y pueden comentar, pero solo el AT envía y califica evaluaciones.
+- Mariana ya tiene su evaluación calificada (91/100) y un hilo de 4 comentarios que se ve también en *Evaluar entrevista* del HM.
+
 ## Cierre
 Con la página de Mariana en pantalla, di tu frase:
 "Por eso creamos Liver Companion, para acompañar a nuestros colaboradores en ______."
