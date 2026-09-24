@@ -16,7 +16,7 @@ const limitado = (ip: string) => {
   return r.length > 20;
 };
 
-const ARCHIVOS = ["package.json", "requirements.txt", "pyproject.toml", "go.mod", "Cargo.toml", "pom.xml", "build.gradle", "Dockerfile"];
+const ARCHIVOS = ["package.json", "pubspec.yaml", "requirements.txt", "pyproject.toml", "go.mod", "Cargo.toml", "pom.xml", "build.gradle", "Dockerfile"];
 
 async function gh(url: string, accept: string, ms = 7000): Promise<Response> {
   const headers: Record<string, string> = { accept, "user-agent": "liver-companion-demo", "x-github-api-version": "2022-11-28" };

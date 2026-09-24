@@ -4,7 +4,7 @@ import type { RepoInfo, RepoProfile, RepoSkill } from "./types";
 
 const LANG_A_SKILL: Record<string, string> = {
   TypeScript: "typescript", JavaScript: "javascript", Python: "python", Java: "java", Kotlin: "kotlin", Go: "go", Rust: "rust",
-  "C#": "csharp", PHP: "php", Ruby: "ruby", Swift: "swift", Scala: "java", PLpgSQL: "postgresql", Dockerfile: "docker", Shell: "bash",
+  "C#": "csharp", PHP: "php", Ruby: "ruby", Swift: "swift", Dart: "dart", "C++": "cpp", Scala: "java", PLpgSQL: "postgresql", Dockerfile: "docker", Shell: "bash",
 };
 
 // Convierte un repositorio de GitHub (lenguajes, topics, README, dependencias) en el "perfil de habilidades" que pide el proyecto.

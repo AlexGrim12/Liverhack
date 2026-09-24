@@ -21,6 +21,8 @@ export const LEXICON: LexSkill[] = [
   S("swift", "Swift", "lenguaje", ["swift"], true),
   S("sql", "SQL", "lenguaje", ["sql"]),
   S("bash", "Bash / Shell", "lenguaje", ["bash", "shell"]),
+  S("dart", "Dart", "lenguaje", ["dart"]),
+  S("cpp", "C++", "lenguaje", ["c++", "cpp"]),
   // Frameworks y APIs
   S("react", "React", "framework", ["react", "react.js", "reactjs"]),
   S("nextjs", "Next.js", "framework", ["next.js", "nextjs"]),
@@ -30,6 +32,9 @@ export const LEXICON: LexSkill[] = [
   S("nestjs", "NestJS", "framework", ["nestjs", "nest.js"]),
   S("spring", "Spring Boot", "framework", ["spring boot", "spring"], true),
   S("django", "Django", "framework", ["django", "flask", "fastapi"]),
+  S("flutter", "Flutter", "framework", ["flutter"]),
+  S("android", "Android", "framework", ["android", "jetpack compose"]),
+  S("ios", "iOS", "framework", ["ios", "swiftui"]),
   S("graphql", "GraphQL", "framework", ["graphql"]),
   S("rest", "APIs REST", "framework", ["rest", "restful", "api rest", "apis rest"], true),
   S("grpc", "gRPC", "framework", ["grpc"]),
@@ -46,6 +51,7 @@ export const LEXICON: LexSkill[] = [
   S("aws", "AWS", "nube", ["aws", "amazon web services", "ecs", "eks", "lambda", "dynamodb", "s3"], true),
   S("gcp", "Google Cloud", "nube", ["google cloud", "gcp", "bigquery"]),
   S("azure", "Azure", "nube", ["azure"]),
+  S("firebase", "Firebase", "nube", ["firebase", "firestore"]),
   S("docker", "Docker", "devops", ["docker", "dockerfile", "contenedores", "contenerice"]),
   S("kubernetes", "Kubernetes", "devops", ["kubernetes", "k8s"]),
   S("terraform", "Terraform", "devops", ["terraform", "infraestructura como codigo"]),
@@ -64,6 +70,7 @@ export const LEXICON: LexSkill[] = [
   S("fintech", "Fintech / banca", "dominio", ["fintech", "banca", "bancario", "financiera", "finance", "financiero"]),
   S("ecommerce", "E-commerce", "dominio", ["e-commerce", "ecommerce", "commerce", "comercio electronico", "marketplace", "tienda online", "dtc", "b2b"]),
   S("retail", "Retail", "dominio", ["retail", "tienda departamental"]),
+  S("movil", "Desarrollo móvil", "dominio", ["desarrollo movil", "aplicaciones moviles", "apps moviles", "app movil", "mobile", "mobile app", "flutter", "android", "ios"]),
   // Colaboración
   S("opensource", "Open source", "blanda", ["open source", "open-source", "codigo abierto", "opensource"]),
 ];
@@ -78,6 +85,8 @@ const REL: [string, string, number][] = [
   ["java", "kotlin", 0.7], ["java", "csharp", 0.5], ["spring", "java", 0.5], ["go", "rust", 0.45], ["rust", "go", 0.45], ["python", "go", 0.3],
   ["kafka", "eventos", 0.6], ["microservicios", "eventos", 0.4], ["microservicios", "kubernetes", 0.3], ["rest", "graphql", 0.6], ["rest", "grpc", 0.6],
   ["graphql", "rest", 0.6], ["testing", "cicd", 0.2],
+  ["flutter", "dart", 0.8], ["dart", "kotlin", 0.4], ["dart", "swift", 0.3], ["dart", "typescript", 0.35], ["flutter", "react", 0.35], ["flutter", "android", 0.5], ["flutter", "ios", 0.5],
+  ["android", "kotlin", 0.7], ["ios", "swift", 0.7], ["cpp", "rust", 0.4], ["cpp", "java", 0.3], ["firebase", "gcp", 0.5],
   ["pagos", "fintech", 0.7], ["fintech", "pagos", 0.8], ["ecommerce", "pagos", 0.5], ["ecommerce", "retail", 0.7], ["retail", "ecommerce", 0.7],
 ];
 export const RELATED: Record<string, Record<string, number>> = {};
