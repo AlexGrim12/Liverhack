@@ -54,3 +54,12 @@ PDF: 1 página con acentos legibles. Gemini real (`gemini-2.5-flash`, sin "razon
 ```bash
 pip install reportlab && python3 scripts/generate-cv-pdfs.py
 ```
+
+## Proyecto de referencia preestablecido
+
+Al abrir *Analizar compatibilidad con IA* el cuadro ya trae `https://github.com/AlexGrim12/jopi` y la app lo intenta traer sola, una vez. Si GitHub no puede darlo (hoy responde 404: es privado o el nombre no coincide), avisa y se queda con `medusajs/medusa` como respaldo.
+- Para que funcione con un repositorio **público**: basta con que exista.
+- Si es **privado**: pon `GITHUB_TOKEN` (con permiso de lectura) en `.env.local`. Cuidado: en un despliegue público, cualquiera con la URL vería el análisis de ese código.
+- Cada traída gasta 3 de las 60 consultas por hora de GitHub sin token.
+- Con otro repositorio de referencia cambian los porcentajes: la historia de Mariana #1 (92 %) se calculó con medusa.
+- Para cambiar el preestablecido: constante `REPO_PREESTABLECIDO` en `src/components/App.tsx`.

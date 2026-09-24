@@ -50,6 +50,7 @@ export default function AtCompat({
   requisicion,
   repos,
   ui,
+  urlInicial = "",
   onVolver,
   onSeleccionarRepo,
   onTraerRepo,
@@ -63,6 +64,7 @@ export default function AtCompat({
   requisicion: { stack: string[]; habilidades: string };
   repos: RepoInfo[];
   ui: CompatUI;
+  urlInicial?: string; // URL de GitHub preestablecida en el cuadro
   onVolver: () => void;
   onSeleccionarRepo: (fullName: string) => void;
   onTraerRepo: (url: string) => void;
@@ -72,7 +74,7 @@ export default function AtCompat({
   onAnalizar: () => void;
   onVerPerfil: (cvId: string) => void;
 }) {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState(urlInicial);
   const [abierto, setAbierto] = useState<string | null>(null);
   const [pdfModal, setPdfModal] = useState<{ url: string; nombre: string } | null>(null);
   const tablero = useRef<HTMLDivElement>(null);

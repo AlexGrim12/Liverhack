@@ -9,6 +9,7 @@ export type SidebarItem = {
   onClick: () => void;
   isActive: boolean;
   badge?: number;
+  destacado?: boolean; // botón llamativo (asistente de IA)
 };
 
 export default function Sidebar({
@@ -24,6 +25,32 @@ export default function Sidebar({
     <nav className="flex flex-col gap-1 px-3 py-4">
       {items.map((item) => {
         const Icon = item.icon;
+        if (item.destacado)
+          return (
+            <button
+              type="button"
+              key={item.key}
+              onClick={() => {
+                item.onClick();
+                onClose();
+              }}
+              className={`group relative mt-2 mb-1 flex items-center gap-3 px-3 py-3 rounded-2xl text-sm font-black text-white text-left bg-gradient-to-r from-accent to-[#8a0066] shadow-md shadow-accent/30 hover:shadow-lg hover:shadow-accent/40 hover:-translate-y-px active:scale-[0.98] transition-all overflow-hidden ${
+                item.isActive ? "ring-2 ring-offset-2 ring-accent" : ""
+              }`}
+            >
+              <span aria-hidden className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+              <span className="relative w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
+                <Icon className="w-[18px] h-[18px]" />
+                <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-white animate-ping opacity-70" />
+                <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-white" />
+              </span>
+              <span className="relative flex-1 leading-tight">
+                {item.label}
+                <span className="block text-[10px] font-semibold text-white/80">Pregúntale por tus candidatos</span>
+              </span>
+              <span className="relative text-[10px] font-black bg-white text-accent px-1.5 py-0.5 rounded-md">IA</span>
+            </button>
+          );
         return (
           <button
             type="button"

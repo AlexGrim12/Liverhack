@@ -76,6 +76,9 @@ import Pendientes from "@/components/screens/Pendientes";
 
 type ChatMessage = { role: "user" | "assistant"; text: string };
 
+// Repositorio de GitHub que aparece preestablecido al analizar la compatibilidad
+const REPO_PREESTABLECIDO = "https://github.com/AlexGrim12/jopi";
+
 const INITIAL_CHAT: ChatMessage[] = [];
 
 // Respuesta simulada del asistente (modo demo): coherente con los datos de la vacante de Mariana.
@@ -181,6 +184,8 @@ export default function App() {
   // Evaluación previa (assessment) y comentarios del equipo por postulación (demo)
   const [evaluaciones, setEvaluaciones] = useState<Record<string, Evaluacion>>(SEED_EVALUACIONES);
   const [comentarios, setComentarios] = useState<Comentario[]>(SEED_COMENTARIOS);
+  // Entrevistas que el AT agenda en la demo (por id de candidato): llegan como notificación al HM y al portal de la persona candidata
+  const [agendadas, setAgendadas] = useState<Record<string, { candidato: string; vacante: string; vacanteId: string; cuando: string }>>({});
 
   const [chatInput, setChatInput] = useState("");
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>(SUPA ? [] : INITIAL_CHAT);
@@ -211,6 +216,7 @@ export default function App() {
     explicaciones: {},
   });
   const [geminiOk, setGeminiOk] = useState(false);
+  const [preRepoIntentado, setPreRepoIntentado] = useState(false);
   const [demoCands, setDemoCands] = useState<Record<string, CandidatoRaw[]>>({});
   const [entrevistasEval, setEntrevistasEval] = useState<repo.EntrevistaEval[]>([]);
   const [calEventos, setCalEventos] = useState<repo.EventoEntrevista[]>([]);
@@ -573,6 +579,13 @@ export default function App() {
     fetch("/api/ai/gemini").then((r) => r.json()).then((j) => setGeminiOk(!!j.disponible)).catch(() => setGeminiOk(false));
   }, []);
 
+  // Proyecto de referencia preestablecido: al abrir el análisis se trae de GitHub una sola vez (si no se puede, se queda el de respaldo)
+  useEffect(() => {
+    if (screen !== "at-compat" || preRepoIntentado || SUPA) return;
+    setPreRepoIntentado(true);
+    void traerRepo(REPO_PREESTABLECIDO);
+  }, [screen]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const perfilPara = (repo: RepoInfo, conReq: boolean) => analyzeRepo(repo, conReq ? REQUISICION_V1 : undefined);
 
   function seleccionarRepo(fullName: string) {
@@ -594,7 +607,7 @@ export default function App() {
       // sin internet o sin cuota: si el repositorio está guardado, se usa la copia
       const guardado = repos.find((r) => url.toLowerCase().includes(r.fullName.toLowerCase()));
       if (guardado) setCompatUI((u) => ({ ...u, repo: guardado, perfil: perfilPara(guardado, u.conRequisicion), cargandoRepo: false, error: `${errMsg(e)} Se usó la copia guardada de ${guardado.fullName}.` }));
-      else setCompatUI((u) => ({ ...u, cargandoRepo: false, error: errMsg(e) }));
+      else setCompatUI((u) => ({ ...u, cargandoRepo: false, error: `${errMsg(e)} Se mantiene ${u.repo.fullName} como proyecto de referencia.` }));
     }
   }
 
@@ -938,6 +951,9 @@ export default function App() {
     celebrar("Entrevista agendada");
     setMeetLink(MEET_LINK);
     if (valido) setAgendaInfo({ inicio: inicio.toISOString(), duracionMin: 60 });
+    if (valido && activeCandidato && activeCandidatoId) {
+      setAgendadas((prev) => ({ ...prev, [activeCandidatoId]: { candidato: activeCandidato.nombre, vacante: activeVacanteRaw?.titulo ?? "", vacanteId: activeVacanteId, cuando: fmtCuando(inicio) } }));
+    }
     void avisarChat("entrevista_agendada", {
       candidato: activeCandidato?.nombre ?? "",
       vacante: activeVacanteRaw?.titulo ?? "",
@@ -1064,15 +1080,27 @@ export default function App() {
           vacanteId: v.id,
         }))
       : role === "hm"
-      ? devueltas.map((v) => ({
-          id: `dv-${v.id}`,
-          title: "Requisición devuelta por el BP",
-          subtitle: `${v.titulo} — ${v.bpComentarios ?? ""}`,
-          due: "Hoy",
-          urgent: true,
-          screen: "hm-nueva",
-          vacanteId: v.id,
-        }))
+      ? [
+          // el AT agendó una entrevista: el HM se entera de inmediato
+          ...Object.entries(agendadas).map(([cid, a]) => ({
+            id: `ag-${cid}`,
+            title: "Entrevista agendada",
+            subtitle: `${a.candidato} · ${a.vacante} — ${a.cuando}`,
+            due: "Nueva",
+            urgent: false,
+            screen: "hm-dashboard",
+            vacanteId: a.vacanteId,
+          })),
+          ...devueltas.map((v) => ({
+            id: `dv-${v.id}`,
+            title: "Requisición devuelta por el BP",
+            subtitle: `${v.titulo} — ${v.bpComentarios ?? ""}`,
+            due: "Hoy",
+            urgent: true,
+            screen: "hm-nueva",
+            vacanteId: v.id,
+          })),
+        ]
       : role === "at"
       ? vacantesData
           .filter((v) => v.etapaIndex === 1 && v.bpEstado === "validada" && v.responsable !== "Por asignar")
@@ -1109,7 +1137,7 @@ export default function App() {
       { key: "calendario", label: "Calendario", icon: Calendar, onClick: () => nav("hm-calendario"), isActive: activeSection === "calendario" },
       { key: "nueva", label: "Nueva requisición", icon: Plus, onClick: () => startNueva(), isActive: activeSection === "nueva" },
       { key: "pendientes", label: "Pendientes", icon: ListChecks, onClick: () => nav("hm-pendientes"), isActive: activeSection === "pendientes", badge: pendienteCount },
-      { key: "chat", label: "Asistente IA", icon: Sparkles, onClick: () => nav("hm-chat"), isActive: activeSection === "chat" },
+      { key: "chat", label: "Asistente IA", icon: Sparkles, onClick: () => nav("hm-chat"), isActive: activeSection === "chat", destacado: true },
     ],
     user: [
       { key: "dashboard", label: "Inicio", icon: Home, onClick: () => nav("user-dashboard"), isActive: activeSection === "dashboard" },
@@ -1206,7 +1234,20 @@ export default function App() {
   const CAND_PORTAL: Record<string, string> = { mariana: "cv-c1", emiliano: "cv-c2", daniela: "cv-c3", rodrigo: "c5", paulina: "c6" };
   const personasPortal: PersonaPortal[] = personasPortalBase.map((p) => {
     const e = evaluaciones[CAND_PORTAL[p.id]];
-    return e ? { ...p, evaluacion: { tipo: TIPOS_EVALUACION[e.tipo].label, estado: e.estado, vence: e.vence } } : p;
+    const ag = agendadas[CAND_PORTAL[p.id]];
+    const conAgenda: PersonaPortal =
+      ag && p.estado === "revision"
+        ? {
+            ...p,
+            estado: "entrevista",
+            pasos: [paso("Postulación", "hecho"), paso("Screening de RH", "hecho"), paso("Entrevista técnica", "actual", ag.cuando), paso("Decisión", "pendiente"), paso("Oferta", "pendiente")],
+            responsable: "Diego Ramírez y Karla Ibarra (panel técnico)",
+            plazo: "Entrevista agendada",
+            semaforo: "#1E8E3E",
+            entrevista: { fecha: ag.cuando, meet: MEET_LINK },
+          }
+        : p;
+    return e ? { ...conAgenda, evaluacion: { tipo: TIPOS_EVALUACION[e.tipo].label, estado: e.estado, vence: e.vence } } : conAgenda;
   });
   function responderOferta(id: string, acepta: boolean) {
     setOfertaResp((prev) => ({ ...prev, [id]: acepta ? "aceptada" : "rechazada" }));
@@ -1612,6 +1653,7 @@ export default function App() {
             requisicion={REQUISICION_V1}
             repos={repos}
             ui={compatUI}
+            urlInicial={REPO_PREESTABLECIDO}
             onVolver={() => nav("at-candidatos")}
             onSeleccionarRepo={seleccionarRepo}
             onTraerRepo={traerRepo}
